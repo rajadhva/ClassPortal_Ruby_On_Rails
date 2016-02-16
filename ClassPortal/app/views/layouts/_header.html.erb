@@ -1,0 +1,16 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <%= link_to "NCSU Class Portal", root_path, id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "About", static_pages_about_path %></li>
+        <% if signed_in? %>
+         <%= link_to "Log out", destroy_user_session_path, method: "delete" %>
+       
+        <% end %>
+        
+      </ul>
+    </nav>
+  </div>
+</header>
