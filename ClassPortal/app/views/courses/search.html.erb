@@ -1,0 +1,61 @@
+<% provide(:title, 'All Courses') %>
+
+<h4>
+  <div class="input-group" align="center">
+    <%= form_tag(courses_search_path, :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search for Courses" %>
+        <%= submit_tag "Search", :name => nil %>
+    <% end %>
+  </div>
+</h4>
+<h2>color=black>Search Results</h2>
+
+
+<table style="width:100%">
+  <tr>
+    <h5>
+      <th>Course Number</th>
+      <th>Title</th>
+      <th>description</th>
+      <th>Instructor</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Status</th>
+    </h5>
+  </tr>
+
+  <!-- <ul class="courses"> -->
+  <% @courses.each do |course| %>
+      <tr>
+        <td>
+          <%= link_to course.CourseNumber, course %>
+        </td>
+        <td>
+          <%= course.Title %>
+        </td>
+        <td>
+          <%= course.Description %>
+        </td>
+        <td>
+          <%= course.Instructor %>
+        </td>
+        <td>
+          <%= course.Startdate %>
+        </td>
+        <td>
+          <%= course.Enddate %>
+        </td>
+        <td>
+          <% if course.Status? %>
+              <%= "Active"%>
+          <% else %>
+              <%= "Inactive" %>
+          <% end %>
+        </td>
+
+        <%#= link_to "delete", book, method: :delete, data: { confirm: "Confirm?" } %>
+
+      </tr>
+  <% end %>
+  </ul>
+</table>
