@@ -8,54 +8,49 @@
     <% end %>
   </div>
 </h4>
-<h2>color=black>Search Results</h2>
+<h2>Search Results</h2>
 
-
-<table style="width:100%">
+<table>
+  <thead>
   <tr>
-    <h5>
-      <th>Course Number</th>
-      <th>Title</th>
-      <th>description</th>
-      <th>Instructor</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-      <th>Status</th>
-    </h5>
+    <th>CourseNumber</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Instructor</th>
+    <th>Startdate</th>
+    <th>Enddate</th>
+    <th>Status</th>
+    <th colspan="3"></th>
+<%#    <% if current_user.admin?%>
+<%#        <th>Delete Book</th> %>
+<%#    <% end %>
   </tr>
 
-  <!-- <ul class="courses"> -->
+  <tbody>
   <% @courses.each do |course| %>
       <tr>
+        <td><%= course.CourseNumber %></td>
+        <td><%= course.Title %></td>
+        <td><%= course.Description %></td>
+        <td><%= course.Instructor %></td>
+        <td><%= course.Startdate %></td>
+        <td><%= course.Enddate %></td>
         <td>
-          <%= link_to course.CourseNumber, course %>
-        </td>
-        <td>
-          <%= course.Title %>
-        </td>
-        <td>
-          <%= course.Description %>
-        </td>
-        <td>
-          <%= course.Instructor %>
-        </td>
-        <td>
-          <%= course.Startdate %>
-        </td>
-        <td>
-          <%= course.Enddate %>
-        </td>
-        <td>
-          <% if course.Status? %>
-              <%= "Active"%>
-          <% else %>
-              <%= "Inactive" %>
+        <%if course.Status %>
+            <%= "Active"%>
+        <%else%>
+            <%= "Inactive"%>
           <% end %>
-        </td>
-
-        <%#= link_to "delete", book, method: :delete, data: { confirm: "Confirm?" } %>
-
+              </td>
+<%#        <% if current_user.admin?%>
+<%#            <% if course.status?%>
+<%#                <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } </td>%>
+<%#            <% end %>
+<%#       <% end %>
       </tr>
   <% end %>
-  </ul>
+  </tbody>
 </table>
+
+<br>
+

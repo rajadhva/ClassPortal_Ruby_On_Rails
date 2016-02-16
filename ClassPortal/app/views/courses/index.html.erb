@@ -4,34 +4,39 @@
 
 <table>
   <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Instructor</th>
-      <th>Startdate</th>
-      <th>Enddate</th>
-      <th>Status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
+  <tr>
+    <th>CourseNumber</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Instructor</th>
+    <th>Startdate</th>
+    <th>Enddate</th>
+    <th>Status</th>
+    <th colspan="3"></th>
+<%#    <% if current_user.admin?%>
+<%#        <th>Delete Book</th> %>
+<%#    <% end %>
+  </tr>
   <tbody>
-    <% @courses.each do |course| %>
+  <% @courses.each do |course| %>
       <tr>
+        <td><%= course.CourseNumber %></td>
         <td><%= course.Title %></td>
         <td><%= course.Description %></td>
         <td><%= course.Instructor %></td>
         <td><%= course.Startdate %></td>
         <td><%= course.Enddate %></td>
-        <td><%= course.Status %></td>
-        <td><%= link_to 'Show', course %></td>
-        <td><%= link_to 'Edit', edit_course_path(course) %></td>
-        <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%if course.Status %>
+              <%= "Active"%>
+          <%else%>
+              <%= "Inactive"%>
+          <% end %>
+              </td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Course', new_course_path %>

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+
+
+  get 'courses/search' => 'courses#search'
   devise_for :users
     resources :courses
 

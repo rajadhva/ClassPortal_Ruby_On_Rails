@@ -10,6 +10,7 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
+    @course=Course.find(params[:id])
   end
 
   # GET /courses/new
@@ -19,12 +20,20 @@ class CoursesController < ApplicationController
 
   # GET /courses/1/edit
   def edit
+    @course=Course.find(params[:id])
   end
 
   # POST /courses
   # POST /courses.json
   def create
     @course = Course.new(course_params)
+    @startDate=@course.Startdate
+    @course.Status=false
+    if @startDate>Date.today
+      @course.Status=false
+    else
+      @course.Status=true
+    end
 
     respond_to do |format|
       if @course.save
@@ -61,14 +70,27 @@ class CoursesController < ApplicationController
     end
   end
 
+
+  def search
+    @courses=Course.all
+    if params[:search]
+      @courses = Course.search(params[:search]).order("created_at DESC")
+    else
+      @courses = Course.all.order('created_at DESC')
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_course
+
+
+
+  def set_course
       @course = Course.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:Title, :Description, :Instructor, :Startdate, :Enddate, :Status)
+      params.require(:course).permit(:CourseNumber,:Title, :Description, :Instructor, :Startdate, :Enddate, :Status)
     end
 end
