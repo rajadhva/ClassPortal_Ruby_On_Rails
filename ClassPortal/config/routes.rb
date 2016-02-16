@@ -1,16 +1,8 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
+  devise_for :users
+    resources :courses
 
-  root 'welcome#index'
-
-  resources :courses
-
-  get '/login' => 'sessions#new'
-  post '/login' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
-
-  get '/signup' => 'users#new'
-  post '/users' => 'users#create'
+  root 'static_pages#new'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
