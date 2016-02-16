@@ -1,0 +1,40 @@
+<% provide(:title, 'All users') %>
+
+<h1>NCSU Class Portal Admins</h1>
+<center>
+<table style="width:70%">
+  <tr>
+	<h5>
+    	<th>User Name</th>
+    	<th>Email</th>
+    	<th>Role</th>
+	</h5>
+  </tr>
+
+<ul class="users">
+	<% @users.each do |user| %>
+		<tr>
+			
+		<td>
+			<%= user.name %>
+		</td>
+		<td>
+			<%= user.email %>
+		</td>
+		
+		<% if user.admin %>
+			<td> Admin </td>
+		<%end%>
+		<% if user.instructor %>
+			<td> Instructor </td>
+		<%end%>
+		<% if user.student %>
+			<td> Student </td>
+		<%end%>
+		
+
+</tr>
+<% end %>
+</ul>
+</table>
+</center>

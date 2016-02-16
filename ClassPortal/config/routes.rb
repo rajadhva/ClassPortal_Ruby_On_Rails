@@ -7,8 +7,11 @@ Rails.application.routes.draw do
 
   root 'static_pages#new'
   get 'static_pages/about'
+  get 'static_pages/todo'
+
     #get 'admins/index'
   get 'admins/welcome'
+  get 'admins/index'
   get 'instructors/welcome'
   get 'students/welcome'
 
