@@ -1,6 +1,31 @@
-<h1>Editing Course</h1>
+<% provide(:title, 'Edit Course') %>
+<h1>Edit Course</h1>
 
-<%= render 'form' %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@course) do |f| %>
+        <%#  <%= render 'shared/error_book_messages' %>
+        <%= f.label :CourseNumber %>
+        <%= f.text_field :CourseNumber, class: 'form-control' %>
 
-<%= link_to 'Show', @course %> |
-<%= link_to 'Back', courses_path %>
+        <%= f.label :Title %>
+        <%= f.text_field :Title, class: 'form-control' %>
+
+        <%= f.label :Description %>
+        <%= f.text_field :Description, class: 'form-control' %>
+
+        <%= f.label :Instructor %>
+        <%= f.text_field :Instructor, class: 'form-control' %>
+
+        <%= f.label :Startdate %>
+        <%= f.date_select :Startdate, class: 'form-control' %>
+
+
+        <%= f.label :Enddate %>
+        <%= f.date_select :Enddate, class: 'form-control' %>
+
+
+        <%= f.submit "Save Changes", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

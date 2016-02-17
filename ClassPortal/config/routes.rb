@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
 
+
   get 'courses/search' => 'courses#search'
+  get 'courses/index' => 'courses#index'
+  get 'courses/new' => 'courses#new'
+  get 'courses/show' => 'courses#show'
+  get 'courses/edit' => 'courses#edit'
+  delete 'courses' => 'courses#destroy'
   devise_for :users, :controllers => {registrations: 'registrations'}
-    resources :courses
-  
+  resources :courses
+
 
   root 'static_pages#new'
   get 'static_pages/about'
@@ -14,6 +20,11 @@ Rails.application.routes.draw do
   get 'admins/index'
   get 'instructors/welcome'
   get 'students/welcome'
+
+   #get 'courses'
+
+
+
 
 
 # devise_for :users, :skip => [:sessions]

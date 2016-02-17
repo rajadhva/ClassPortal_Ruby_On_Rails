@@ -5,6 +5,14 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     @courses = Course.all
+    for course in @courses
+      if isActive(course.Startdate,course.Enddate)
+        course.Status=true
+      else
+        course.Status=false
+      end
+    end
+
   end
 
   # GET /courses/1
@@ -28,22 +36,22 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
     @startDate=@course.Startdate
+    @endDate=@course.Enddate
+
     @course.Status=false
-    if @startDate>Date.today
-      @course.Status=false
-    else
+    if isActive(@startDate,@endDate)
       @course.Status=true
+    else
+      @course.Status=false
     end
 
-    respond_to do |format|
-      if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
-        format.json { render :show, status: :created, location: @course }
-      else
-        format.html { render :new }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
+    if @course.save
+      flash[:success] = "The course is added successfully!"
+      redirect_to courses_url
+    else
+      render 'new'
     end
+
   end
 
   # PATCH/PUT /courses/1
@@ -80,10 +88,18 @@ class CoursesController < ApplicationController
     end
   end
 
+  #all helper methods are listed here
+
+  def isActive(startDate,endDate)
+    if (startDate<=Date.today and Date.today<=endDate)
+      return true
+    else
+      return false
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
-
-
 
   def set_course
       @course = Course.find(params[:id])
