@@ -8,12 +8,13 @@
     	<th>User Name</th>
     	<th>Email</th>
     	<th>Role</th>
+    	<th></th>
 	</h5>
   </tr>
 
 <ul class="users">
 	<% @users.each do |user| %>
-		<tr>
+	<tr>
 			
 		<td>
 			<%= user.name %>
@@ -31,10 +32,15 @@
 		<% if user.student %>
 			<td> Student </td>
 		<%end%>
+		<td> 
 		
+		<%if !user.super and user!=current_user %>
+		<%= link_to "Delete", user, method: :delete, data: { confirm: "Confirm?" } %>
+		<%end%>
+		</td>
 
-</tr>
-<% end %>
+	</tr>
+	<% end %>
 </ul>
 </table>
 </center>

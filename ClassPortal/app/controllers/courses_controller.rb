@@ -34,6 +34,7 @@ class CoursesController < ApplicationController
   # POST /courses
   # POST /courses.json
   def create
+    puts "=================================================="
     @course = Course.new(course_params)
     @startDate=@course.Startdate
     @endDate=@course.Enddate

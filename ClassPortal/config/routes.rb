@@ -7,25 +7,30 @@ Rails.application.routes.draw do
   get 'courses/show' => 'courses#show'
   get 'courses/edit' => 'courses#edit'
   delete 'courses' => 'courses#destroy'
-  devise_for :users, :controllers => {registrations: 'registrations'}
-  resources :courses
 
+
+  
+  get 'users/index' => 'users#index'
+  get 'users/new' => 'users#new'
+  #get 'users/show' => 'users#show'
+ # get 'users/edit' => 'users#edit'
+
+  devise_for :users, :controllers => {registrations: 'registrations'}
 
   root 'static_pages#new'
   get 'static_pages/about'
   get 'static_pages/todo'
 
-    #get 'admins/index'
+   
   get 'admins/welcome'
   get 'admins/index'
   get 'instructors/welcome'
   get 'students/welcome'
+  
 
-   #get 'courses'
-
-
-
-
+    
+  resources :courses
+    resources :users
 
 # devise_for :users, :skip => [:sessions]
  # as :user do
