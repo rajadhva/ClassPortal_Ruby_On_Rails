@@ -1,4 +1,5 @@
 <% provide(:title, 'Add Course') %>
+
 <h1>Add Course</h1>
 
 <div class="row">
@@ -18,10 +19,10 @@
         <%= f.collection_select :Instructor, User.select{|u| u[:instructor]}, :id, :name, class: 'form-control' %>
 
         <%= f.label :Startdate %>
-        <%= f.date_select :Startdate, class: 'form-control' %>
+        <%= f.text_field :Startdate, class: 'form-control datepicker'%>
 
         <%= f.label :Enddate %>
-        <%= f.date_select :Enddate, class: 'form-control' %>
+        <%= f.text_field :Enddate, class: 'form-control datepicker'%>
 
 
         <%= f.submit "Add Course", class: "btn btn-primary" %>

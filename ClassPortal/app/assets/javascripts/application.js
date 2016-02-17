@@ -15,3 +15,10 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 /*/= require_tree .*/
+//= require cocoon
+//= require jquery-ui
+
+$(document).ready(function(){
+    $('.datepicker').datepicker();
+
+});

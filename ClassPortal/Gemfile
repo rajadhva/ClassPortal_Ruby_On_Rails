@@ -47,6 +47,12 @@ gem 'bcrypt-ruby', '3.0.0', :require => 'bcrypt'
 # Use Tz-info
 gem 'tzinfo-data', '~> 1.2016', '>= 1.2016.1'
 
+gem 'formtastic', '~>3.0.0rc'
+
+gem 'jquery-ui-rails'
+
+gem "cocoon"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
