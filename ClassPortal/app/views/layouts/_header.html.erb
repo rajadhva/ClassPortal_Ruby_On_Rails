@@ -35,7 +35,6 @@
                   <li><%= link_to "Add Courses", courses_new_path, :controller => "courses" %></li>
               <%end%>
               <li><%= link_to "Search Courses", courses_search_path, :controller => "courses" %></li>
-              <li><%= link_to "Search Courses", static_pages_todo_path, :controller => "static_pages" %></li>
               
               <% if current_user.instructor? %>
               <li><%= link_to "Approve Requests", static_pages_todo_path, :controller => "static_pages" %></li>
