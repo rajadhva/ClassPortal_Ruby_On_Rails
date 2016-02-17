@@ -10,10 +10,25 @@ Rails.application.routes.draw do
 
 
   
+#  get 'users/index' => 'users#index'
+#  get 'users/new' => 'users#new'
+#  get 'users/show' => 'users#show'
+#  delete 'users' => 'users#destroy'
+
   get 'users/index' => 'users#index'
   get 'users/new' => 'users#new'
-  #get 'users/show' => 'users#show'
- # get 'users/edit' => 'users#edit'
+  get 'users/show' => 'users#show'
+  get 'users/edit' => 'users#edit'
+  patch 'users/update' => 'users#update'
+
+  delete 'users'  => 'users#destroy'
+  
+  get 'admins/index' => 'admins#index'
+  get 'instructors/index' => 'instructors#index'
+  get 'students/index' => 'students#index'
+
+  resource :users
+ 
 
   devise_for :users, :controllers => {registrations: 'registrations'}
 
@@ -23,14 +38,13 @@ Rails.application.routes.draw do
 
    
   get 'admins/welcome'
-  get 'admins/index'
   get 'instructors/welcome'
   get 'students/welcome'
   
 
     
   resources :courses
-    resources :users
+  
 
 # devise_for :users, :skip => [:sessions]
  # as :user do

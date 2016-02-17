@@ -1,4 +1,4 @@
-<% provide(:title, 'All users') %>
+<% provide(:title, 'Admins') %>
 
 <h1>NCSU Class Portal Admins</h1>
 <center>
@@ -14,6 +14,8 @@
 
 <ul class="users">
 	<% @users.each do |user| %>
+	<% if user.admin or user.super %>
+		
 	<tr>
 			
 		<td>
@@ -29,12 +31,6 @@
 		<% elsif user.admin %>
 			<td> Admin </td>
 		<%end%>
-		<% if user.instructor %>
-			<td> Instructor </td>
-		<%end%>
-		<% if user.student %>
-			<td> Student </td>
-		<%end%>
 		<td> 
 		
 		<%if !user.super and user!=current_user %>
@@ -43,6 +39,7 @@
 		</td>
 
 	</tr>
+	<% end %>
 	<% end %>
 </ul>
 </table>
