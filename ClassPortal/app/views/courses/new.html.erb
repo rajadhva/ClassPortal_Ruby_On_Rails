@@ -15,8 +15,12 @@
         <%= f.text_field :Description, class: 'form-control' %>
 
         <%= f.label :Instructor %>
+        <%= f.collection_select :Instructor, User.select{|u| u[:instructor]}, :id, :name, class: 'form-control' %>
 
+        <%= f.label :Startdate %>
+        <%= f.date_select :Startdate, class: 'form-control' %>
 
+        <%= f.label :Enddate %>
         <%= f.date_select :Enddate, class: 'form-control' %>
 
 
