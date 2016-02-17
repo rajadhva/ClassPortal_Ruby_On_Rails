@@ -1,0 +1,58 @@
+<% provide(:title, 'All Users') %>
+
+<h4>
+  <div class="input-group" align="center">
+    <%= form_tag(users_search_path, :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search for Users" %>
+        <%= submit_tag "Search", :name => nil %>
+    <% end %>
+  </div>
+</h4>
+<h2>Search Results</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>User Name</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th></th>
+  </tr>
+  <tbody>
+  <% @users.each do |user| %>
+  <tr>
+      
+    <td>
+    <%= link_to user.name, users_show_path(:id=>user.id) %>
+      <%# user.name %>
+    </td>
+    <td>
+      <%= user.email %>
+    </td>
+    
+    <% if user.admin and user.super %>
+      <td> Super Admin </td>
+    <% elsif user.admin %>
+      <td> Admin </td>
+    <%end%>
+    <% if user.instructor %>
+      <td> Instructor </td>
+    <%end%>
+    <% if user.student %>
+      <td> Student </td>
+    <%end%>
+    <td> 
+    
+    <%if !user.super and user!=current_user %>
+    <%= link_to "Delete", users_path(:id=>user.id), method: :delete, data: { confirm: "Confirm?"} %>
+    <%end%>
+    </td>
+
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<br>
+

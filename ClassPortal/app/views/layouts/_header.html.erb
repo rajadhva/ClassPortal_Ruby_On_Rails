@@ -1,6 +1,9 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "NCSU Class Portal", root_path, id: "logo" %>
+
+    <%= image_tag("ncstate-brick.jpg", :alt => "NCSU", :id=>"img_logo") %>
+    <%= link_to "Class Portal", root_path, id: "logo" %>
+    
     <nav>
       <ul class="nav navbar-nav navbar-right">
       
@@ -19,7 +22,7 @@
               <li><%= link_to "Manage Admins", admins_index_path, :controller => "admins" %></li>
               <li><%= link_to "Manage Instructors", instructors_index_path, :controller => "instructors" %></li>
               <li><%= link_to "Manage Students", students_index_path, :controller => "students" %></li>
-              <li><%= link_to "Search", static_pages_todo_path, :controller => "search" %></li>
+              <li><%= link_to "Search", users_search_path, :controller => "users" %></li>
             </ul>
           </li>
         <% end %>
@@ -63,5 +66,6 @@
         
       </ul>
     </nav>
+    
   </div>
 </header>

@@ -4,4 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   attr_accessor :roles
+
+  def self.search(query)
+    where("name like ? or email like ? ", "%#{query}%", "%#{query}%")
+  end
 end

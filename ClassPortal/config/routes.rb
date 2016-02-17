@@ -8,19 +8,12 @@ Rails.application.routes.draw do
   get 'courses/edit' => 'courses#edit'
   delete 'courses' => 'courses#destroy'
 
-
-  
-#  get 'users/index' => 'users#index'
-#  get 'users/new' => 'users#new'
-#  get 'users/show' => 'users#show'
-#  delete 'users' => 'users#destroy'
-
+  get 'users/search' => 'users#search'
   get 'users/index' => 'users#index'
   get 'users/new' => 'users#new'
   get 'users/show' => 'users#show'
   get 'users/edit' => 'users#edit'
   patch 'users/update' => 'users#update'
-
   delete 'users'  => 'users#destroy'
   
   get 'admins/index' => 'admins#index'
