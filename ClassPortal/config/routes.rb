@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-
-
   get 'courses/search' => 'courses#search'
   get 'courses/index' => 'courses#index'
   get 'courses/new' => 'courses#new'

@@ -11,10 +11,11 @@
 #
 default: &default
   adapter: mysql2
+  host: localhost
   encoding: utf8
   pool: 5
-  username: csc547
-  password: oodd@1
+  username: root
+  password: Rittu@511
   socket: /var/run/mysqld/mysqld.sock
 
 development:

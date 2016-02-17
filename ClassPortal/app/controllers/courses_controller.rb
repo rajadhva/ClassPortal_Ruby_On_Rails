@@ -14,7 +14,10 @@ class CoursesController < ApplicationController
     end
 
   end
-
+``
+  def new
+    @courses = Course.all
+  end
   # GET /courses/1
   # GET /courses/1.json
   def show
