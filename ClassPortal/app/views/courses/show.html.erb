@@ -20,7 +20,7 @@
 
 <p>
   <strong>Instructor:</strong>
-  <%= @course.Instructor %>
+  <%= User.find(@course.Instructor).name %>
 </p>
 
 <p>
