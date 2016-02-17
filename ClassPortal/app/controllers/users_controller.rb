@@ -6,11 +6,13 @@ class UsersController < ApplicationController
 
   def create 
     @user = User.new(user_params)
-    @user.student = false
+    
     if @user.roles == 'Admin'
       @user.admin = true
+      @user.student = false
     elsif @user.roles == 'Instructor'
       @user.instructor = true
+      @user.student = false
     elsif @user.roles == 'Student'
       @user.student = true
     end
