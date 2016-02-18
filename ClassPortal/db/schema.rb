@@ -14,12 +14,12 @@
 ActiveRecord::Schema.define(version: 20160217191327) do
 
   create_table "courses", force: :cascade do |t|
-    t.string   "Title",        limit: 255
+    t.string   "Title",        limit: 255, null: false
     t.string   "Description",  limit: 255
     t.string   "Instructor",   limit: 255
     t.date     "Startdate"
     t.date     "Enddate"
-    t.string   "Status",       limit: 255
+    t.boolean  "Status"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.string   "CourseNumber", limit: 30

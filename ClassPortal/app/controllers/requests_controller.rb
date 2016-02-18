@@ -36,15 +36,13 @@ class RequestsController < ApplicationController
     @request = Request.new(request_params)
     puts @request.user_id
     puts @request.course_id
-    
 
+    if @request.save
+      redirect_to courses_index_path
+    else
+      redirect_to :back
+    end
 
-      if @request.save
-        redirect_to courses_index_path
-      else
-        redirect_to :back
-      end
-    
   end
 
   # PATCH/PUT /requests/1
@@ -71,13 +69,21 @@ class RequestsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_request
-      @request = Request.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_request
+    @request = Request.find(params[:id])
+  end
 
+<<<<<<< HEAD
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
       params.require(:request).permit(:user_id, :course_id, :Status)
     end
 end
+=======
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def request_params
+    params.require(:request).permit(:user_id, :course_id)
+  end
+end
+>>>>>>> f7cc5fc8403f0a535a08653603fd6cb9b4988657

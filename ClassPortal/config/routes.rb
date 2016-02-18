@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'requests/index' => 'requests#index'
   #patch 'requests/update' => 'requests#update'
 
-resources :requests
+  resources :requests
   get 'courses/search' => 'courses#search'
   get 'courses/index' => 'courses#index'
   get 'courses/new' => 'courses#new'
@@ -23,6 +23,8 @@ resources :requests
   
   get 'admins/index' => 'admins#index'
   get 'instructors/index' => 'instructors#index'
+  get 'instructors/view' => 'instructors#view'
+
   get 'students/index' => 'students#index'
 
   resource :users
