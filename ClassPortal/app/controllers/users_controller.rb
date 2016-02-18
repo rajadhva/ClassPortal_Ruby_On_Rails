@@ -39,6 +39,7 @@ class UsersController < ApplicationController
 
   def destroy
   User.find(params[:id]).destroy
+  
   flash[:success]="User Removed"
   redirect_to request.referrer
   end

@@ -60,6 +60,14 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
+    
+    
+      if isActive(@course.Startdate,@course.Enddate)
+        @course.Status=true
+      else
+        @course.Status=false
+      end
+    
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }

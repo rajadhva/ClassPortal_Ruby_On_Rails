@@ -26,7 +26,7 @@
         <td><%= course.Startdate %></td>
         <td><%= course.Enddate %></td>
         <td>
-          <%if course.Status %>
+          <%if course.Status=="1" %>
               <%= "Active"%>
           <%else%>
               <%= "Inactive"%>
@@ -34,8 +34,8 @@
               </td>
         <% if current_user.admin? %>
             <td>
-              <% if !course.Status? %>
-                  <%= link_to "delete", course,  method: :delete, data: { confirm: "Confirm?" } %>
+              <% if course.Status=="0" %>
+                  <%= link_to "Delete", course,  method: :delete, data: { confirm: "Confirm?" } %>
               <% end %>
             </td>
         <% end %>

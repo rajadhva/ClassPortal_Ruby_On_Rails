@@ -37,8 +37,8 @@
 </p>
 
 <% if !current_user.student %>
-<%= link_to 'Update Course', edit_course_path(@course) %> |
-<% else %>
+<%= link_to 'Update Course', edit_course_path(@course) %> | 
+<% elsif current_user.student and @course.Status=="0" %>
 <%= link_to 'Request Enrollment', requests_new_path(:user_id=>current_user.id, :course_id=>@course.id) %> |
 <% end %>
 

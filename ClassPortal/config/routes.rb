@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   get 'requests/new' => 'requests#new'
   post 'requests/create' => 'requests#create'
+  get 'requests/index' => 'requests#index'
+  #patch 'requests/update' => 'requests#update'
 
 resources :requests
   get 'courses/search' => 'courses#search'
