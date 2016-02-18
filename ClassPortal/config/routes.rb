@@ -2,8 +2,10 @@ Rails.application.routes.draw do
 
   get 'requests/new' => 'requests#new'
   post 'requests/create' => 'requests#create'
+  get 'requests/index' => 'request#index'
 
-resources :requests
+
+  resources :requests
   get 'courses/search' => 'courses#search'
   get 'courses/index' => 'courses#index'
   get 'courses/new' => 'courses#new'
@@ -21,6 +23,8 @@ resources :requests
   
   get 'admins/index' => 'admins#index'
   get 'instructors/index' => 'instructors#index'
+  get 'instructors/view' => 'instructors#view'
+
   get 'students/index' => 'students#index'
 
   resource :users

@@ -16,6 +16,16 @@ class InstructorsController < ApplicationController
   
 def show
     @user = User.find(params[:id])
-  end 
+end
+
+  def view
+    @courseId=Course.where("Instructor=3").select("id")
+    @temp=[]
+    @courseId.each   do |x|
+        @temp.append(x.id)
+    end
+    @showRecords=Request.where(:course_id => @temp, :Status=>'Pending')
+    @request=Request.all
+  end
 
 end

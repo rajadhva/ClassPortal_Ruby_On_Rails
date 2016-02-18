@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Rails ClassPortal: development" uuid="ceb78743-7446-4d2e-bd6c-2071b78a291f">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails ClassPortal: test" uuid="a7044bbf-39aa-4c53-8ac2-164e71cd1486">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails ClassPortal: production" uuid="f0ba89e8-9217-4e29-821e-877f392679ed">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>

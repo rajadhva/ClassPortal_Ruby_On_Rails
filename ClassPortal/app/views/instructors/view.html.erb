@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Requests</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Student Name</th>
+    <th>Course Name</th>
+    <th>Option</th>
+    <th>Option</th>
+  </tr>
+
+  <tbody>
+  <% @showRecords.each do |x| %>
+      <tr>
+  <td><%= User.find(x.user_id).name %></td>
+  <td><%= Course.find(x.course_id).Title %></td>
+  <td><%= link_to "Enroll" %></td>
+  <td><%= link_to "Decline" %></td>
+     </tr>
+  <% end %>
+  </tbody>
+
+</table>

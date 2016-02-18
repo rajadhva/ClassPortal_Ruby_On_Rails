@@ -14,7 +14,7 @@ class CoursesController < ApplicationController
     end
 
   end
-``
+  ``
   def new
     @courses = Course.all
   end
@@ -60,14 +60,14 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
-    
-    
-      if isActive(@course.Startdate,@course.Enddate)
-        @course.Status=true
-      else
-        @course.Status=false
-      end
-    
+
+
+    if isActive(@course.Startdate,@course.Enddate)
+      @course.Status=true
+    else
+      @course.Status=false
+    end
+
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
@@ -110,14 +110,14 @@ class CoursesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+  # Use callbacks to share common setup or constraints between actions.
 
   def set_course
-      @course = Course.find(params[:id])
-    end
+    @course = Course.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def course_params
-      params.require(:course).permit(:CourseNumber,:Title, :Description, :Instructor, :Startdate, :Enddate, :Status)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def course_params
+    params.require(:course).permit(:CourseNumber,:Title, :Description, :Instructor, :Startdate, :Enddate, :Status)
+  end
 end
