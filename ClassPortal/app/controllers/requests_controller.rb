@@ -18,9 +18,10 @@ class RequestsController < ApplicationController
 
   # GET /requests/new
   def new
+    @count=Request.all
+    @count = Request.search_by_user_course(params[:user_id],params[:course_id])
     @request = Request.new
     @request.course_id = params[:course_id]
-
   end
 
   # GET /requests/1/edit
@@ -30,17 +31,20 @@ class RequestsController < ApplicationController
   # POST /requests
   # POST /requests.json
   def create
+
+
     @request = Request.new(request_params)
-puts @request.user_id
-puts @request.course_id
-    respond_to do |format|
+    puts @request.user_id
+    puts @request.course_id
+    
+
+
       if @request.save
         redirect_to courses_index_path
       else
-        format.html { render :new }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
+        redirect_to :back
       end
-    end
+    
   end
 
   # PATCH/PUT /requests/1
