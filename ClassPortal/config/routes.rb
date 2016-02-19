@@ -3,11 +3,9 @@ Rails.application.routes.draw do
   get 'requests/new' => 'requests#new'
   post 'requests/create' => 'requests#create'
   get 'requests/index' => 'requests#index'
-  #patch 'requests/update' => 'requests#update'
+  put 'requests/update' => 'requests#update'
 
-  resources :courses do
-    resources :references
-  end
+  
   resources :requests
   get 'courses/search' => 'courses#search'
   get 'courses/index' => 'courses#index'
@@ -15,6 +13,10 @@ Rails.application.routes.draw do
   get 'courses/show' => 'courses#show'
   get 'courses/edit' => 'courses#edit'
   delete 'courses' => 'courses#destroy'
+
+  resources :courses do
+    resources :references
+  end
 
   get 'users/search' => 'users#search'
   get 'users/index' => 'users#index'

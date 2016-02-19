@@ -48,14 +48,12 @@ class RequestsController < ApplicationController
   # PATCH/PUT /requests/1
   # PATCH/PUT /requests/1.json
   def update
-    respond_to do |format|
       if @request.update(request_params)
         redirect_to requests_index_path
       else
-        format.html { render :edit }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
+        redirect_to :back
       end
-    end
+    
   end
 
   # DELETE /requests/1
@@ -74,16 +72,8 @@ class RequestsController < ApplicationController
     @request = Request.find(params[:id])
   end
 
-<<<<<<< HEAD
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
       params.require(:request).permit(:user_id, :course_id, :Status)
     end
 end
-=======
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def request_params
-    params.require(:request).permit(:user_id, :course_id)
-  end
-end
->>>>>>> f7cc5fc8403f0a535a08653603fd6cb9b4988657

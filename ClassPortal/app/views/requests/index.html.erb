@@ -8,26 +8,35 @@
       <th>Student Name</th>
       <th>Course Number</th>
       <th>Course Name</th>
-      <th colspan="2"></th>
+      <th colspan="2">Request Status</th>
     </tr>
   </thead>
 
   <tbody>
     <% @requests.each do |request| %>
+    <% if current_user.student? and request.user_id == current_user.id%>
+        <tr>
+        <td><%= request.user.name %></td>
+        <td><%= request.course.CourseNumber %></td>
+        <td><%= request.course.Title %></td>
+        <td colspan="2"><%=request.Status %></td>        
+        </tr>
+    <%end%>
+
+    <%if !current_user.student?%>
       <tr>
         <td><%= request.user.name %></td>
         <td><%= request.course.CourseNumber %></td>
         <td><%= request.course.Title %></td>
         
-        <% if request.Status != "Pending" %>
-          <td><%=request.Status %></td>
+        <% if request.Status == "Pending"%>
+          <td><%= link_to 'Approve', request_path(request, request: {Status: 'Approved'}), method: :put %> | 
+          <%= link_to 'Deny', request_path(request, request: {Status: 'Denied'}), method: :put %> </td>    
         <%else%>
-
-        <td><%= link_to "Approve", request_path(request, :Status => 'Approved'), :method=> :patch %> | 
-          <%= link_to "Deny", request_path(request, :Status => 'Denied'), :method=> :patch %>
-        <td><%= link_to 'Delete', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td ><%=request.Status %>    </td>
         <% end %>
-
+        <td><%= link_to 'Delete', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
       </tr>
     <% end %>
   </tbody>
