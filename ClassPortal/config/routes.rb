@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get 'requests/index' => 'requests#index'
   #patch 'requests/update' => 'requests#update'
 
+  resources :courses do
+    resources :references
+  end
   resources :requests
   get 'courses/search' => 'courses#search'
   get 'courses/index' => 'courses#index'
@@ -42,8 +45,7 @@ Rails.application.routes.draw do
   get 'students/welcome'
   
 
-    
-  resources :courses
+
   
 
 # devise_for :users, :skip => [:sessions]

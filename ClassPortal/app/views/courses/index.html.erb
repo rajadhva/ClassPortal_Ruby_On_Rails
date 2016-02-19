@@ -11,6 +11,8 @@
     <th>Instructor</th>
     <th>Startdate</th>
     <th>Enddate</th>
+    <th>References</th>
+    <th>Add Reference</th>
     <th>Status</th>
     <% if current_user.admin?%>
     <th>Delete Course</th>
@@ -25,6 +27,8 @@
         <td><%= course.Instructor %></td>
         <td><%= course.Startdate %></td>
         <td><%= course.Enddate %></td>
+        <td><%= link_to "Show References", course_references_path(course) %> </td>
+        <td><%= link_to "Add new Reference", new_course_reference_path(course) %> </td>
         <td>
           <%if course.Status=="1" %>
               <%= "Active"%>
