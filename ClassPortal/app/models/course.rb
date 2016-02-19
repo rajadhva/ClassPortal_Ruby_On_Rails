@@ -5,6 +5,7 @@ class Course < ActiveRecord::Base
   validates(:Enddate, presence:true)
   has_many :requests, :dependent => :destroy
   has_many :references
+  has_many :enrollments, :dependent => :destroy
 
   def self.search(query)
     where("Title like ? or CourseNumber like ? ", "%#{query}%", "%#{query}%")

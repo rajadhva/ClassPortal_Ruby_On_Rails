@@ -24,7 +24,7 @@
         <td><%= link_to course.CourseNumber,course %></td>
         <td><%= course.Title %></td>
         <td><%= course.Description %></td>
-        <td><%= course.Instructor %></td>
+        <td><%= User.find(course.Instructor).name %></td>
         <td><%= course.Startdate %></td>
         <td><%= course.Enddate %></td>
         <td><%= link_to "Show References", course_references_path(course) %> </td>

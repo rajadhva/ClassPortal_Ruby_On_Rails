@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :enrollments
   get 'requests/new' => 'requests#new'
   post 'requests/create' => 'requests#create'
   get 'requests/index' => 'requests#index'

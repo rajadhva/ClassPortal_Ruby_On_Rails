@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 	has_many :requests, :dependent => :destroy
+	has_many :enrollments, :dependent => :destroy
   
 
   # Include default devise modules. Others available are:

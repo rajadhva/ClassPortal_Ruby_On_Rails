@@ -12,8 +12,6 @@ class RequestsController < ApplicationController
   def show
     @user = User.new(params[@request.user_id])
     @course = Course.new(params[@request.course_id])
-
-    puts @user.name
   end
 
   # GET /requests/new
@@ -34,9 +32,7 @@ class RequestsController < ApplicationController
 
 
     @request = Request.new(request_params)
-    puts @request.user_id
-    puts @request.course_id
-
+   
     if @request.save
       redirect_to courses_index_path
     else
@@ -48,7 +44,16 @@ class RequestsController < ApplicationController
   # PATCH/PUT /requests/1
   # PATCH/PUT /requests/1.json
   def update
+
       if @request.update(request_params)
+
+      if @request.Status == 'Approved'
+        @enrollment = Enrollment.new
+        @enrollment.user_id = @request.user_id
+        @enrollment.course_id = @request.course_id
+        @enrollment.save
+      end 
+
         redirect_to requests_index_path
       else
         redirect_to :back
