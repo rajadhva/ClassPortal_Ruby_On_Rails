@@ -4,42 +4,25 @@
 
 <p>
   <strong>Course Number:</strong>
-  <%= @course.CourseNumber%>
-</p>
-<p>
+  <%= @course.CourseNumber%> <br/>
   <strong>Title:</strong>
-  <%= @course.Title %>
-</p>
-
-<p>
+  <%= @course.Title %><br/>
   <strong>Description:</strong>
-  <%= @course.Description %>
-</p>
-
-<p>
+  <%= @course.Description %><br/>
   <strong>Instructor:</strong>
-  <%= User.find(@course.Instructor).name %>
-</p>
-
-<p>
+  <%= User.find(@course.Instructor).name %><br/>
   <strong>Startdate:</strong>
-  <%= @course.Startdate %>
-</p>
-
-<p>
+  <%= @course.Startdate %><br/>
   <strong>Enddate:</strong>
-  <%= @course.Enddate %>
-</p>
-
-<p>
+  <%= @course.Enddate %><br/>
   <strong>Status:</strong>
-  <%= @course.Status %>
+  <%= @course.Status %><br/>
 </p>
 
 <% if !current_user.student %>
 <%= link_to 'Update Course', edit_course_path(@course) %> | 
-<% elsif current_user.student and @course.Status=="0" %>
+<% elsif current_user.student and @course.Status=="0" and !@enrollmment.nil? %>
 <%= link_to 'Request Enrollment', requests_new_path(:user_id=>current_user.id, :course_id=>@course.id) %> |
 <% end %>
 
-<%= link_to 'Back', courses_path %>
+<%= link_to 'Back', :back %>

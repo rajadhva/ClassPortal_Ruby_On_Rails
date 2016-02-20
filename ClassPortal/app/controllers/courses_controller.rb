@@ -22,6 +22,7 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
     @course=Course.find(params[:id])
+    @enrollment= Enrollment.find_by(:course_id=>@course.id, :user_id => current_user.id)
   end
 
   # GET /courses/new
