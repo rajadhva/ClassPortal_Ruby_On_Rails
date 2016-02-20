@@ -1,0 +1,30 @@
+
+<h1>References</h1>
+<% if !flash[:notice].blank? %>
+    <div class = "alert alert-info">
+      <%= flash[:notice] %>
+    </div>
+<% end %>
+
+<br/>
+
+<%= link_to "Add new Reference", new_course_reference_path(Course.find(params[:course_id])), class: "btn btn-primary" %>
+<br />
+<br />
+
+<table class = "table table-bordered table-striped">
+  <thead>
+  <tr>
+    <th>Description</th>
+    <th>Download Link</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @references.each do |ref| %>
+      <tr>
+        <td><%= ref.description %></td>
+        <td><%= link_to "Download Resume", ref.attachment_url %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

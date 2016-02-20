@@ -9,10 +9,9 @@ class ReferencesController < ApplicationController
     @reference = @course.references.new(ref_params)
 
     if @reference.save
-      flash[:success] = "The reference is added successfully!"
-      redirect_to courses_url
+      redirect_to course_references_path(@course), notice: "The reference #{@reference.description} has been uploaded."
     else
-      render 'new'
+      render "new"
     end
   end
 
@@ -22,6 +21,6 @@ class ReferencesController < ApplicationController
 
   private
   def ref_params
-    params.require(:reference).permit(:description, :url)
+    params.require(:reference).permit(:description, :attachment)
   end
 end

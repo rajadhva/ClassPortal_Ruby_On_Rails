@@ -1,0 +1,12 @@
+
+
+<%= form_for([@course, @reference]) do |f| %>
+    <%#  <%= render 'shared/error_book_messages' %>
+    <%= f.label :description %>
+    <%= f.text_field :description, class: 'form-control' %>
+
+    <%= f.label :attachment %>
+    <%= f.file_field :attachment %>
+
+    <%= f.submit "Add Reference", class: "btn btn-primary" %>
+<% end %>
