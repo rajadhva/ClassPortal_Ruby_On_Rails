@@ -6,7 +6,7 @@ class Course < ActiveRecord::Base
   has_many :requests, :dependent => :destroy
   has_many :references
   has_many :enrollments, :dependent => :destroy
-  has_many :course_instructors
+  has_many :course_instructors, :dependent => :destroy
   accepts_nested_attributes_for :course_instructors, allow_destroy: true
 
   def self.search(query)
