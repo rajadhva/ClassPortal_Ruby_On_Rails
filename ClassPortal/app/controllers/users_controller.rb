@@ -62,15 +62,16 @@ class UsersController < ApplicationController
     puts params[:id]
     puts params[:email]
     @user=User.find(params[:id])
-    respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to users_index_path, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: users_index_path }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
+        if(@user.admin or @user.super)
+          redirect_to users_index_path
+        elsif @user.student
+          redirect_to students_welcome_path
+        elsif @user.instructor
+          redirect_to instructors_welcome_path
+        end
+     end
+      
   end
 
   def search
