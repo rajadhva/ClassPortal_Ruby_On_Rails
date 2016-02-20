@@ -4,7 +4,18 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+
+    
+    if current_user.instructor
+      @courseInstructor = CourseInstructor.where(:user_id=>current_user.id)
+      @courses = []
+      @courseInstructor.each do |c|
+        @courses << Course.find(c.course_id)
+      end 
+      
+    else
+      @courses = Course.all
+    end
     for course in @courses
       if isActive(course.Startdate,course.Enddate)
         course.Status=true
@@ -12,17 +23,16 @@ class CoursesController < ApplicationController
         course.Status=false
       end
     end
-
+  
   end
-  ``
-  def new
-    @courses = Course.all
-  end
+ 
   # GET /courses/1
   # GET /courses/1.json
   def show
     @course=Course.find(params[:id])
     @enrollment= Enrollment.find_by(:course_id=>@course.id, :user_id => current_user.id)
+    @instructors = CourseInstructor.where(:course_id=>@course.id)
+    puts @instructors.inspect
   end
 
   # GET /courses/new
@@ -49,7 +59,12 @@ class CoursesController < ApplicationController
       @course.Status=false
     end
 
-    if @course.save
+    if @course.save 
+      @courseInstructor = CourseInstructor.new
+      @courseInstructor.user_id = params[:course_instructors][:Instructor]
+      @courseInstructor.course_id = @course.id
+      @courseInstructor.save
+      
       flash[:success] = "The course is added successfully!"
       redirect_to courses_url
     else
@@ -119,6 +134,6 @@ class CoursesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def course_params
-    params.require(:course).permit(:CourseNumber,:Title, :Description, :Instructor, :Startdate, :Enddate, :Status)
+    params.require(:course).permit(:CourseNumber,:Title, :Description, :Instructor, :Startdate, :Enddate, :Status, course_instructors_attributes:[:course_id,:user_id])
   end
 end

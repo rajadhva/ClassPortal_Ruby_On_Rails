@@ -4,8 +4,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@course) do |f| %>
-        <%#  <%= render 'shared/error_book_messages' %>
-        <%= f.label :CourseNumber %>
+       <%= f.label :CourseNumber %>
         <%= f.text_field :CourseNumber, class: 'form-control' %>
 
         <%= f.label :Title %>
@@ -15,15 +14,15 @@
         <%= f.text_field :Description, class: 'form-control' %>
 
         <%= f.label :Instructor %>
-        <%= f.collection_select :Instructor, User.select{|u| u[:instructor]}, :id, :name, class: 'form-control' %>
+        <%= fields_for :course_instructors do |c| %>
+        <%= c.collection_select :Instructor, User.select{|u| u[:instructor]} , :id, :name %>
+        <% end %>
 
         <%= f.label :Startdate %>
-        <%= f.date_select :Startdate, class: 'form-control' %>
-
+        <%= f.date_field :Startdate%>
 
         <%= f.label :Enddate %>
-        <%= f.date_select :Enddate, class: 'form-control' %>
-
+        <%= f.date_field :Enddate%>
 
         <%= f.submit "Save Changes", class: "btn btn-primary" %>
     <% end %>

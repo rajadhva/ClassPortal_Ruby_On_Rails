@@ -11,12 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219050643) do
+ActiveRecord::Schema.define(version: 20160220003036) do
+
+  create_table "course_instructors", force: :cascade do |t|
+    t.integer  "course_id",  limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "course_instructors", ["course_id"], name: "index_course_instructors_on_course_id", using: :btree
+  add_index "course_instructors", ["user_id"], name: "index_course_instructors_on_user_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
     t.string   "Title",        limit: 255
     t.string   "Description",  limit: 255
-    t.string   "Instructor",   limit: 255
     t.date     "Startdate"
     t.date     "Enddate"
     t.string   "Status",       limit: 255
@@ -78,6 +87,8 @@ ActiveRecord::Schema.define(version: 20160219050643) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "course_instructors", "courses"
+  add_foreign_key "course_instructors", "users"
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
   add_foreign_key "requests", "courses"

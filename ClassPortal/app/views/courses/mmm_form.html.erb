@@ -25,8 +25,19 @@
   </div>
   <div class="field">
     <%= f.label :Instructor %><br>
-    <%= f.text_field :Instructor %>
+    
+    <%= fields_for :courseInstructor, @course.courseInstructor do |courseInstructorField| %>
+    <%= courseInstructorField.check_box :user_id %>
+    <% end %>
+  <% end %>
   </div>
+
+    <%= f.label :Startdate %>
+    <%= f.text_field :Startdate, class: 'form-control datepicker'%>
+    <%= f.label :Enddate %>
+    <%= f.text_field :Enddate, class: 'form-control datepicker'%>
+
+
   <div class="field">
     <%= f.label :Startdate %><br>
     <%= f.date_select :Startdate %>
