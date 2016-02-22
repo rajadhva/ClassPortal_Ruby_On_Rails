@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+<h1>Admin Details</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @admin.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @admin.email %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <% if @admin.super %>
+    Super Admin
+  <% elsif @admin.admin %>
+    Admin
+  <%end%>
+
+ 
+</p>
+
+<%= link_to 'Back', :back %>

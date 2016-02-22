@@ -4,12 +4,10 @@ class RequestsController < ApplicationController
   # GET /requests
   # GET /requests.json
   def index
-    
-
     if current_user.student
-      @requests = Request.where(:user_id=>current_user.id)
+      @requests = Request.where(:student_id=>current_user.id)
     elsif current_user.instructor
-      @courses = CourseInstructor.where(:user_id=>current_user.id)
+      @courses = CourseInstructor.where(:instructor_id=>current_user.id)
       @requests =[]
       @courses.each do |c|
         @requests << Request.find_by(:course_id=>c.course_id)
@@ -23,14 +21,14 @@ class RequestsController < ApplicationController
   # GET /requests/1
   # GET /requests/1.json
   def show
-    @user = User.new(params[@request.user_id])
+    @student = Student.new(params[@request.student_id])
     @course = Course.new(params[@request.course_id])
   end
 
   # GET /requests/new
   def new
     @count=Request.all
-    @count = Request.search_by_user_course(params[:user_id],params[:course_id])
+    @count = Request.search_by_user_course(params[:student_id],params[:course_id])
     @request = Request.new
     @request.course_id = params[:course_id]
   end
@@ -43,9 +41,8 @@ class RequestsController < ApplicationController
   # POST /requests.json
   def create
 
-
     @request = Request.new(request_params)
-   
+
     if @request.save
       redirect_to courses_index_path
     else
@@ -62,7 +59,7 @@ class RequestsController < ApplicationController
 
       if @request.Status == 'Approved'
         @enrollment = Enrollment.new
-        @enrollment.user_id = @request.user_id
+        @enrollment.student = @request.student
         @enrollment.course_id = @request.course_id
         @enrollment.save
       end 
@@ -92,6 +89,6 @@ class RequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
-      params.require(:request).permit(:user_id, :course_id, :Status)
+      params.require(:request).permit(:student_id, :course_id, :Status)
     end
 end

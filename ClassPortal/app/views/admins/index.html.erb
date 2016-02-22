@@ -13,13 +13,13 @@
   </tr>
 
 <ul class="users">
-	<% @users.each do |user| %>
+	<% @admins.each do |user| %>
 	<% if user.admin or user.super %>
 		
 	<tr>
 			
 		<td>
-		<%= link_to user.name, users_show_path(:id=>user.id) %>
+		<%= link_to user.name, admins_show_path(:id=>user.id) %>
 			<%# user.name %>
 		</td>
 		<td>
@@ -34,7 +34,7 @@
 		<td> 
 		
 		<%if !user.super and user!=current_user %>
-		<%= link_to "Delete", users_path(:id=>user.id), method: :delete, data: { confirm: "Confirm?"} %>
+		<%= link_to "Delete", admins_path(:id=>user.id), method: :delete, data: { confirm: "Confirm?"} %>
 		<%end%>
 		</td>
 

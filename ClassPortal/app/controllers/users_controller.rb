@@ -33,15 +33,16 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @user=User.find(params[:id])
-  end
 
   def destroy
   User.find(params[:id]).destroy
   
   flash[:success]="User Removed"
   redirect_to request.referrer
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   
@@ -59,8 +60,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    puts params[:id]
-    puts params[:email]
     @user=User.find(params[:id])
       if @user.update(user_params)
         if(@user.admin or @user.super)

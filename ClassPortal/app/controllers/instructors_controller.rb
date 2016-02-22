@@ -5,17 +5,24 @@ class InstructorsController < ApplicationController
   
 	end
 
+  def destroy
+  Instructor.find(params[:id]).destroy
+  
+  flash[:success]="Instructor Removed"
+  redirect_to request.referrer
+  end
+
 	def index
-    @users=User.all
+    @instructors=Instructor.all
     if params[:search]
-    @users = User.search(params[:search]).order("created_at DESC")
+    @instructors = Instructor.search(params[:search]).order("created_at DESC")
   else
-    @users = User.all.order('created_at DESC')
+    @instructors = Instructor.all.order('created_at DESC')
   end
   end
   
 def show
-    @user = User.find(params[:id])
+    @instructor = Instructor.find(params[:id])
 end
 
   def view

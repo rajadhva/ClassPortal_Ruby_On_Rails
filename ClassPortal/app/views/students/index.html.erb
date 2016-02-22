@@ -13,7 +13,7 @@
   </tr>
 
 <ul class="users">
-	<% @users.each do |user| %>
+	<% @students.each do |user| %>
 	<% if user.student %>
 		
 	<tr>
@@ -27,7 +27,7 @@
 		<td> Student </td>		
 		<td> 
 		<%if !user.super and user!=current_user %>
-		<%= link_to "Delete", users_path(:id=>user.id), method: :delete, data: { confirm: "Confirm?"} %>
+		<%= link_to "Delete", students_path(:id=>user.id), method: :delete, data: { confirm: "Confirm?"} %>
 		<%end%>
 		</td>
 

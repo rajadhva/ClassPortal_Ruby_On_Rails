@@ -1,19 +1,27 @@
 class StudentsController < ApplicationController
 
 	def index
-    @users=User.all
+    @students=Student.all
     if params[:search]
-    @users = User.search(params[:search]).order("created_at DESC")
+    @students = Student.search(params[:search]).order("created_at DESC")
   else
-    @users = User.all.order('created_at DESC')
+    @students = Student.all.order('created_at DESC')
   end
   end
 
   def show
+    @student = Student.find(params[:id])
+  end
+
+  def destroy
+  Student.find(params[:id]).destroy
+  
+  flash[:success]="Student Removed"
+  redirect_to request.referrer
   end
   
 def welcome
-    @user = User.find(current_user.id)
+    @user = Student.find(current_user.id)
     @enrollments = Enrollment.search_by_student(@user.id)
     @pastCourses = []
     @currentCourses = []

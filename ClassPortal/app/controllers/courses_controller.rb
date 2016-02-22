@@ -7,7 +7,7 @@ class CoursesController < ApplicationController
 
     
     if current_user.instructor
-      @courseInstructor = CourseInstructor.where(:user_id=>current_user.id)
+      @courseInstructor = CourseInstructor.where(:instructor_id=>current_user.id)
       @courses = []
       @courseInstructor.each do |c|
         @courses << Course.find(c.course_id)
@@ -30,7 +30,7 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
     @course=Course.find(params[:id])
-    @enrollment= Enrollment.find_by(:course_id=>@course.id, :user_id => current_user.id)
+    @enrollment= Enrollment.find_by(:course_id=>@course.id, :student_id => current_user.id)
     @instructors = CourseInstructor.where(:course_id=>@course.id)
     puts @instructors.inspect
   end
@@ -61,7 +61,7 @@ class CoursesController < ApplicationController
 
     if @course.save 
       @courseInstructor = CourseInstructor.new
-      @courseInstructor.user_id = params[:course_instructors][:Instructor]
+      @courseInstructor.instructor_id = params[:course_instructors][:Instructor]
       @courseInstructor.course_id = @course.id
       @courseInstructor.save
       
@@ -134,6 +134,6 @@ class CoursesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def course_params
-    params.require(:course).permit(:CourseNumber,:Title, :Description, :Instructor, :Startdate, :Enddate, :Status, course_instructors_attributes:[:course_id,:user_id])
+    params.require(:course).permit(:CourseNumber,:Title, :Description, :Instructor, :Startdate, :Enddate, :Status, course_instructors_attributes:[:course_id,:instructor_id])
   end
 end

@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220003036) do
+ActiveRecord::Schema.define(version: 20160222182439) do
 
   create_table "course_instructors", force: :cascade do |t|
-    t.integer  "course_id",  limit: 4
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "course_id",     limit: 4
+    t.integer  "instructor_id", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "course_instructors", ["course_id"], name: "index_course_instructors_on_course_id", using: :btree
-  add_index "course_instructors", ["user_id"], name: "index_course_instructors_on_user_id", using: :btree
+  add_index "course_instructors", ["instructor_id"], name: "index_course_instructors_on_instructor_id", using: :btree
 
   create_table "courses", force: :cascade do |t|
     t.string   "Title",        limit: 255
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20160220003036) do
   end
 
   create_table "enrollments", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
+    t.integer  "student_id", limit: 4
     t.integer  "course_id",  limit: 4
     t.string   "grade",      limit: 255
     t.datetime "created_at",             null: false
@@ -43,18 +43,21 @@ ActiveRecord::Schema.define(version: 20160220003036) do
   end
 
   add_index "enrollments", ["course_id"], name: "index_enrollments_on_course_id", using: :btree
-  add_index "enrollments", ["user_id"], name: "index_enrollments_on_user_id", using: :btree
+  add_index "enrollments", ["student_id"], name: "index_enrollments_on_student_id", using: :btree
 
   create_table "references", force: :cascade do |t|
-    t.string   "description", limit: 255
-    t.string   "url",         limit: 255
-    t.integer  "course_id",   limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "description",         limit: 255
+    t.string   "string_file_name",    limit: 255
+    t.string   "string_content_type", limit: 255
+    t.integer  "string_file_size",    limit: 4
+    t.datetime "string_updated_at"
+    t.integer  "course_id",           limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "requests", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
+    t.integer  "student_id", limit: 4
     t.integer  "course_id",  limit: 4
     t.string   "Status",     limit: 255, default: "Pending"
     t.datetime "created_at",                                 null: false
@@ -62,7 +65,7 @@ ActiveRecord::Schema.define(version: 20160220003036) do
   end
 
   add_index "requests", ["course_id"], name: "index_requests_on_course_id", using: :btree
-  add_index "requests", ["user_id"], name: "index_requests_on_user_id", using: :btree
+  add_index "requests", ["student_id"], name: "index_requests_on_student_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "",    null: false
@@ -88,9 +91,9 @@ ActiveRecord::Schema.define(version: 20160220003036) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "course_instructors", "courses"
-  add_foreign_key "course_instructors", "users"
+  add_foreign_key "course_instructors", "users", column: "instructor_id"
   add_foreign_key "enrollments", "courses"
-  add_foreign_key "enrollments", "users"
+  add_foreign_key "enrollments", "users", column: "student_id"
   add_foreign_key "requests", "courses"
-  add_foreign_key "requests", "users"
+  add_foreign_key "requests", "users", column: "student_id"
 end

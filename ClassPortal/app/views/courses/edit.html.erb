@@ -15,7 +15,7 @@
 
         <%= f.label :Instructor %>
         <%= fields_for :course_instructors do |c| %>
-        <%= c.collection_select :Instructor, User.select{|u| u[:instructor]} , :id, :name %>
+        <%= c.collection_select :Instructor, Instructor.select{|u| u[:instructor]} , :id, :name %>
         <% end %>
 
         <%= f.label :Startdate %>

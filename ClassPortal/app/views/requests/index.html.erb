@@ -15,7 +15,7 @@
   <tbody>
     <% @requests.each do |request| %>
           <tr>
-            <td><%= request.user.name %></td>
+            <td><%= Student.find(request.student_id).name %></td>
             <td><%= request.course.CourseNumber %></td>
             <td><%= request.course.Title %></td>
             

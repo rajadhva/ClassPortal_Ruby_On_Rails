@@ -1,24 +1,17 @@
 Rails.application.routes.draw do
 
-  resources :course_instructors
-  resources :enrollments
+  
   get 'requests/new' => 'requests#new'
   post 'requests/create' => 'requests#create'
   get 'requests/index' => 'requests#index'
   put 'requests/update' => 'requests#update'
 
-  
-  resources :requests
   get 'courses/search' => 'courses#search'
   get 'courses/index' => 'courses#index'
   get 'courses/new' => 'courses#new'
   get 'courses/show' => 'courses#show'
   get 'courses/edit' => 'courses#edit'
   delete 'courses' => 'courses#destroy'
-
-  resources :courses do
-    resources :references
-  end
 
   get 'users/search' => 'users#search'
   get 'users/index' => 'users#index'
@@ -29,13 +22,29 @@ Rails.application.routes.draw do
   delete 'users'  => 'users#destroy'
   
   get 'admins/index' => 'admins#index'
+  get 'admins/show' => 'admins#show'
+  get 'admins/edit' => 'admins#edit'
+  delete 'admins'  => 'admins#destroy'
+
   get 'instructors/index' => 'instructors#index'
-  get 'instructors/view' => 'instructors#view'
+  get 'instructors/show' => 'instructors#show'
+  get 'instructors/edit' => 'instructors#edit'
+  delete 'instructors'  => 'instructors#destroy'
 
   get 'students/index' => 'students#index'
+  get 'students/show' => 'students#show'
+  get 'students/edit' => 'students#edit'
+  delete 'students'  => 'students#destroy'
+  
+  get 'instructors/view' => 'instructors#view'
 
   resource :users
- 
+  resources :course_instructors
+  resources :enrollments
+  resources :courses do
+    resources :references
+  end
+  resources :requests
 
   devise_for :users, :controllers => {registrations: 'registrations'}
 
