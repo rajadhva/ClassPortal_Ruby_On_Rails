@@ -23,7 +23,7 @@
 
 <% if !current_user.student %>
 <%= link_to 'Update Course', edit_course_path(@course) %> | 
-<% elsif current_user.student and @course.Status=="0" and @enrollment.nil? %>
+<% elsif current_user.student and @course.Status=="Active" and @enrollment.nil? %>
 <%= link_to 'Request Enrollment', requests_new_path(:student_id=>current_user.id, :course_id=>@course.id) %> |
 <% end %>
 
