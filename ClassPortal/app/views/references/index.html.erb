@@ -15,15 +15,17 @@
 <table class = "table table-bordered table-striped">
   <thead>
   <tr>
-    <th>Description</th>
-    <th>Download Link</th>
+    <th>S. No.</th>
+    <th>File</th>
   </tr>
   </thead>
   <tbody>
   <% @references.each do |ref| %>
       <tr>
-        <td><%= ref.description %></td>
-        <td><%= link_to "Download Resume", ref.attachment_url %></td>
+        <% i=1 %>
+        <td><%= i %></td>
+        <td><%= link_to "#{ref.description}", ref.attachment_url %></td>
+        <% i=i+1 %>
       </tr>
   <% end %>
   </tbody>
