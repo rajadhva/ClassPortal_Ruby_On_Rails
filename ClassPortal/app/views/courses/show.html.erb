@@ -18,12 +18,7 @@
   <strong>Enddate:</strong>
   <%= @course.Enddate %><br/>
   <strong>Status:</strong>
-  <% if @course.Status=='0' %>
-  Inactive
-  <%else%>
-  Active
-  <%end%>
-  <br/>
+  <%= @course.Status %><br/>
 </p>
 
 <% if !current_user.student %>

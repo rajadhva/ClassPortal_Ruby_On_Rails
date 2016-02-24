@@ -24,6 +24,9 @@
         <%= f.label :Enddate %>
         <%= f.date_field :Enddate%>
 
+        <%= f.label :Status %>
+        <%= f.select :Status, options_for_select([['Active', 'Active'], ['Inactive', 'Inactive']]), class: 'form-control' %>
+
         <%= f.submit "Save Changes", class: "btn btn-primary" %>
     <% end %>
   </div>

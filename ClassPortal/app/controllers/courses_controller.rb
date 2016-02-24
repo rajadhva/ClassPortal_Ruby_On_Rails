@@ -4,8 +4,6 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-
-    
     if current_user.instructor
       @courseInstructor = CourseInstructor.where(:instructor_id=>current_user.id)
       @courses = []
@@ -16,6 +14,7 @@ class CoursesController < ApplicationController
     else
       @courses = Course.all
     end
+=begin
     for course in @courses
       if isActive(course.Startdate,course.Enddate)
         course.Status=true
@@ -23,6 +22,7 @@ class CoursesController < ApplicationController
         course.Status=false
       end
     end
+=end
   
   end
  
@@ -49,16 +49,16 @@ class CoursesController < ApplicationController
   # POST /courses.json
   def create
     @course = Course.new(course_params)
+=begin
     @startDate=@course.Startdate
     @endDate=@course.Enddate
-
     @course.Status=false
     if isActive(@startDate,@endDate)
       @course.Status=true
     else
       @course.Status=false
     end
-
+=end
     if @course.save 
       @courseInstructor = CourseInstructor.new
       @courseInstructor.instructor_id = params[:course_instructors][:Instructor]
@@ -76,6 +76,7 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
+=begin
 
     if isActive(@course.Startdate,@course.Enddate)
       @course.Status=true
@@ -83,6 +84,7 @@ class CoursesController < ApplicationController
       @course.Status=false
     end
 
+=end
 
     respond_to do |format|
       if @course.update(course_params)
@@ -116,14 +118,17 @@ class CoursesController < ApplicationController
   end
 
   #all helper methods are listed here
+=begin
 
   def isActive(startDate,endDate)
-    if (startDate<=Date.today and Date.today<=endDate)
+    if (startDate<=Date.today and Date.today<endDate)
       return true
     else
       return false
     end
-  end
+end
+
+=end
 
   private
   # Use callbacks to share common setup or constraints between actions.

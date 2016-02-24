@@ -26,16 +26,10 @@
         <td><%= course.Enddate %></td>
         <td><%= link_to "Reference Material", course_references_path(course) %> </td>
 
-        <td>
-          <%if course.Status=="1" %>
-              <%= "Active"%>
-          <%else%>
-              <%= "Inactive"%>
-          <% end %>
-              </td>
+        <td><%= course.Status %></td>
         <% if current_user.admin? %>
             <td>
-              <% if course.Status=="0" %>
+              <% if course.Status=="Active" %>
                   <%= link_to "Delete", course,  method: :delete, data: { confirm: "Confirm?" } %>
               <% end %>
             </td>
