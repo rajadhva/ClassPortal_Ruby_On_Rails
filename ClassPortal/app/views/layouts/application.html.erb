@@ -8,12 +8,13 @@
 </head>
 <body>
 <%= render 'layouts/header' %>
-
+<div class="layout-body">
 <%= yield %>
 <center>
 
 <p class="alert"><%=alert%></p>
 </center>
+</div>
 <%= render 'layouts/footer' %>
 </body>
 </html>
