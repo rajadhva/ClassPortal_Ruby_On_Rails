@@ -26,5 +26,8 @@
 <% elsif current_user.student and @course.Status=="Active" and @enrollment.nil? %>
 <%= link_to 'Request Enrollment', requests_new_path(:student_id=>current_user.id, :course_id=>@course.id) %> |
 <% end %>
+<% if current_user.student and @course.Status=="Inactive" %>
+<%= link_to 'Subcribe Notification', subscribes_path(:course=>@course.Title),method: :post%>|
+<% end %>
 
 <%= link_to 'Back', :back %>

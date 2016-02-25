@@ -62,6 +62,16 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
+
+    #to send mail for subscriptions
+    if (params[:Status]=="1")
+      @subscribe_list = Subscribe.where(:course => params[:Title])
+      @subscribe_list.each do |i|
+        SubscribeMailer.sample_email(i.user,i.course).deliver_now
+        i.destroy
+      end
+    end
+
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }

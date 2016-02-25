@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :subscribes
   resources :conversations do
   resources :messages
  end
