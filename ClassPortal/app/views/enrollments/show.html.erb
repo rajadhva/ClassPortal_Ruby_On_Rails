@@ -1,4 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_enrollment_path(@enrollment) %> |
-<%= link_to 'Back', enrollments_path %>
+<h1>Enrollments for <%= @course.Title %></h1>
+
+<table>
+  <thead>
+    <th>S. No.</th>
+    <th>Student</th>
+    <th>Grades</th>
+    <th>Post Grades</th>
+  </thead>
+  <tbody>
+  <% @enrollments.each do |enrollment| %>
+    <% i = 1%>
+    <tr>
+      <td><%= i %></td>
+      <td><%= Student.find(enrollment.student_id).name %></td>
+      <td><%= enrollment.grade%></td>
+      <td><%= link_to 'Post', edit_enrollment_path(enrollment) %></td>
+    </tr>
+    <% i = i+1%>
+  <% end %>
+  </tbody>
+</table>
+
+<%#= link_to 'Back', course_path(@course) %>

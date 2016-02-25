@@ -1,15 +1,16 @@
 class EnrollmentsController < ApplicationController
-  before_action :set_enrollment, only: [:show, :edit, :update, :destroy]
+  # before_action :set_enrollment, only: [:show, :edit, :update, :destroy]
 
   # GET /enrollments
   # GET /enrollments.json
-  def index
-    @enrollments = Enrollment.all
-  end
+#  def index
+ # end
 
   # GET /enrollments/1
   # GET /enrollments/1.json
   def show
+    @course = Course.find(params[:id])
+    @enrollments = Enrollment.where("course_id = ?", params[:id].to_s)
   end
 
   # GET /enrollments/new
@@ -19,6 +20,7 @@ class EnrollmentsController < ApplicationController
 
   # GET /enrollments/1/edit
   def edit
+    @enrollment=Enrollment.find(params[:id])
   end
 
   # POST /enrollments
@@ -40,6 +42,7 @@ class EnrollmentsController < ApplicationController
   # PATCH/PUT /enrollments/1
   # PATCH/PUT /enrollments/1.json
   def update
+    @enrollment = Enrollment.find(params[:id])
     respond_to do |format|
       if @enrollment.update(enrollment_params)
         format.html { redirect_to @enrollment, notice: 'Enrollment was successfully updated.' }
@@ -69,6 +72,7 @@ class EnrollmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def enrollment_params
-      params.fetch(:enrollment, {})
+      #params.fetch(:enrollment, {})
+      params.require(:enrollment).permit(:course_id,:student_id, :grade)
     end
 end

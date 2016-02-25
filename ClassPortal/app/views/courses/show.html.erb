@@ -22,9 +22,11 @@
 </p>
 <%= link_to "Reference Material", course_references_path(@course) %> |
 <% if !current_user.student %>
-<%= link_to 'Update Course', edit_course_path(@course) %> | 
+    <%= link_to 'Update Course', edit_course_path(@course) %> |
+    <%= link_to 'View Grades', :controller => 'enrollments', :action => 'show', :id =>@course.id %> |
 <% elsif current_user.student and @course.Status=="Active" and @enrollment.nil? %>
-<%= link_to 'Request Enrollment', requests_new_path(:student_id=>current_user.id, :course_id=>@course.id) %> |
+    <%= link_to 'Request Enrollment', requests_new_path(:student_id=>current_user.id, :course_id=>@course.id) %> |
 <% end %>
+
 
 <%= link_to 'Back', :back %>

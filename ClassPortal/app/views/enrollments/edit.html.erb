@@ -1,6 +1,17 @@
 <h1>Editing Enrollment</h1>
 
-<%= render 'form' %>
+<%= form_for(@enrollment) do |f| %>
+    <%= f.label :course_id %>
+    <%= f.text_field :course_id, class: 'form-control' %>
 
-<%= link_to 'Show', @enrollment %> |
-<%= link_to 'Back', enrollments_path %>
+    <%= f.label :student_id %>
+    <%= f.text_field :student_id, class: 'form-control' %>
+
+    <%= f.label :grade %>
+    <%= f.text_field :grade, class: 'form-control' %>
+
+    <%= f.submit "Save Changes", class: "btn btn-primary" %>
+<% end %>
+
+<%#= link_to 'Show', @enrollment %> |
+<%= link_to 'Back', :controller => 'enrollments', :action => 'show', :id =>@enrollment.course_id %>
