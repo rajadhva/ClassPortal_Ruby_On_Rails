@@ -20,7 +20,7 @@
   <strong>Status:</strong>
   <%= @course.Status %><br/>
 </p>
-
+<%= link_to "Reference Material", course_references_path(@course) %> |
 <% if !current_user.student %>
 <%= link_to 'Update Course', edit_course_path(@course) %> | 
 <% elsif current_user.student and @course.Status=="Active" and @enrollment.nil? %>

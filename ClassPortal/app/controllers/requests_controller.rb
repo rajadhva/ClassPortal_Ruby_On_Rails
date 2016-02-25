@@ -5,17 +5,25 @@ class RequestsController < ApplicationController
   # GET /requests.json
   def index
     if current_user.student
+      puts 'REQUEST#INDEX :: STUDENT'
       @requests = Request.where(:student_id=>current_user.id)
     elsif current_user.instructor
+      puts 'REQUEST#INDEX :: INSTRUCTOR'
       @courses = CourseInstructor.where(:instructor_id=>current_user.id)
       @requests =[]
       @courses.each do |c|
-        @requests << Request.find_by(:course_id=>c.course_id)
-      end
+        @request = Request.find_by(:course_id=>c.course_id)
+        if @request.nil?
+          puts 'REQUEST#INDEX :: request nil'
+        else
+          puts 'REQUEST#INDEX :: request not nil'
+          @requests << @request
+        end
+        end
     else
+      puts 'REQUEST#INDEX :: ADMIN'
       @requests = Request.all
     end
-    
   end
 
   # GET /requests/1

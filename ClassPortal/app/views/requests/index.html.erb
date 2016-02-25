@@ -24,8 +24,8 @@
             <% else %>
                 <% if request.Status == "Pending"%>
                
-                  <td><%= link_to 'Approve', request_path(request, request: {Status: 'Approved'}), method: :put %> | 
-                  <%= link_to 'Deny', request_path(request, request: {Status: 'Denied'}), method: :put %> </td>    
+                  <td><%= link_to 'Approve', request_path(request, request: {Status: 'Approved'}), method: :put %> |
+                  <%= link_to 'Deny', request_path(request, request: {Status: 'Denied'}), method: :put %> </td>
 
                 <%else%>
 
