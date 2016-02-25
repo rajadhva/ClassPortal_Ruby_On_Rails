@@ -9,10 +9,16 @@ class CoursesController < ApplicationController
       @courses = []
       @courseInstructor.each do |c|
         @courses << Course.find(c.course_id)
-      end 
-      
+      end
     else
       @courses = Course.all
+    end
+
+    @courses.each do |course|
+      if course.Enddate < Date.today
+        @course = course
+        @course.update(Status: "Inactive")
+      end
     end
   end
  
@@ -80,11 +86,24 @@ class CoursesController < ApplicationController
 
   def search
     @courses=Course.all
-    if params[:search]
-      @courses = Course.search(params[:search]).order("created_at DESC")
-    else
-      @courses = Course.all.order('created_at DESC')
+
+    if params[:CourseNumber].to_s != ''
+      @courses = @courses.where("CourseNumber = ?", params[:CourseNumber].to_s)
     end
+    if params[:Title].to_s != ''
+      @courses = @courses.where("Title = ?", params[:Title].to_s)
+    end
+    if params[:Instructor].to_s != ''
+
+    end
+    if params[:Description].to_s != ''
+      @courses = @courses.where("Description = ?", params[:Description].to_s)
+    end
+    if params[:Status].to_s != ''
+      @courses = @courses.where("Status = ?", params[:Status].to_s)
+    end
+
+    @courses = @courses.order('created_at DESC')
   end
 
   private

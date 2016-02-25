@@ -1,10 +1,14 @@
 <% provide(:title, 'All Courses') %>
 
 <h4>
-  <div class="input-group" align="center">
+  <div class="input-group search-params" align="center">
     <%= form_tag(courses_search_path, :method => "get", id: "search-form") do %>
-        <%= text_field_tag :search, params[:search], placeholder: "Search for Courses" %>
-        <%= submit_tag "Search", :name => nil %>
+        <%= text_field_tag :CourseNumber, params[:courseNumber], placeholder: "Course Number" %>
+        <%= text_field_tag :Title, params[:title], placeholder: "Title" %>
+        <%= text_field_tag :Instructor, params[:Instructor], placeholder: "Instructor" %>
+        <%= text_field_tag :Description, params[:Description], placeholder: "Description" %>
+        <%= text_field_tag :Status, params[:Status], placeholder: "Status" %>
+        <%= submit_tag "Search", :name => nil , class: "btn btn-primary"%>
     <% end %>
   </div>
 </h4>
@@ -31,13 +35,7 @@
         <td><%= course.Description %></td>
         <td><%= course.Startdate %></td>
         <td><%= course.Enddate %></td>
-        <td>
-          <%if course.Status %>
-              <%= "Active"%>
-          <%else%>
-              <%= "Inactive"%>
-          <% end %>
-        </td>
+        <td><%= course.Status %></td>
         <% if current_user.admin? %>
             <td>
               <% if !course.Status? %>
