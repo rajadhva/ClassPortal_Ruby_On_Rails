@@ -55,10 +55,7 @@ class EnrollmentsController < ApplicationController
   # DELETE /enrollments/1.json
   def destroy
     @enrollment.destroy
-    respond_to do |format|
-      format.html { redirect_to enrollments_url, notice: 'Enrollment was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to request.referrer
   end
 
   private

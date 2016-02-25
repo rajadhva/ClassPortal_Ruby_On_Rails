@@ -41,6 +41,8 @@ Rails.application.routes.draw do
   
   get 'instructors/view' => 'instructors#view'
 
+  delete 'enrollments' => 'enrollments#destroy'
+
   resource :users
   resources :course_instructors
   resources :enrollments

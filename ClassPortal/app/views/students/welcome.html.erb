@@ -31,12 +31,12 @@
     <div id="collapse2" class="panel-collapse collapse">
       <div class="panel-body"> 
 		<table>
-		<tr><th>Course Number</th><th>Course Title</th></tr>
+		<tr><th>Course Number</th><th>Course Title</th><th></th></tr>
 	      <% @currentCourses.each  do  |currentCourse| %>
 	      	<tr>
 	      		<td><%=link_to currentCourse.CourseNumber,currentCourse%></td>
 	      		<td><%=currentCourse.Title %></td>
-	      		
+	      		<td><%=link_to "Drop Course", enrollments_path(:id=>currentCourse.id), method: :delete, data: { confirm: "Confirm?"}%></td>
 	      	</tr>
 	      <%end%>
 	   </table>
@@ -53,12 +53,13 @@
     <div id="collapse3" class="panel-collapse collapse">
       <div class="panel-body"> 
       <table>
-      	<tr><th>Course Number</th><th>Course Title</th><th>Start Date</th></tr>
+      	<tr><th>Course Number</th><th>Course Title</th><th>Start Date</th><th></th></tr>
 	      <% @futureCourses.each  do  |futureCourse| %>
 	      	<tr>
 	      		<td><%=link_to futureCourse.CourseNumber,futureCourse%></td>
 	      		<td><%=futureCourse.Title %></td>
 	      		<td><%=futureCourse.Startdate %></td>
+            <td><%=link_to "Drop Course", enrollments_path(:id=>futureCourse.id), method: :delete, data: { confirm: "Confirm?"}%></td>
 	      	</tr>
 	      <%end%>
 	   </table>
