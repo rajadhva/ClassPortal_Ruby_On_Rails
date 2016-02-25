@@ -3,7 +3,8 @@ class InstructorsController < ApplicationController
 
 	def welcome
   
-	end
+
+  end 
 
   def destroy
   Instructor.find(params[:id]).destroy

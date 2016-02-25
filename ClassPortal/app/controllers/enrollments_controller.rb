@@ -4,7 +4,14 @@ class EnrollmentsController < ApplicationController
   # GET /enrollments
   # GET /enrollments.json
   def index
-    @enrollments = Enrollment.all
+    @courses = Course.find(params[:course_id])
+    @enrollments = Enrollment.search_by_course(params[:course_id])
+
+    @students = []
+
+    @enrollments.each do |e|
+      @students << Student.find(e.student_id)
+    end
   end
 
   # GET /enrollments/1

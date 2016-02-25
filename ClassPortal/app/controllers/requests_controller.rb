@@ -12,12 +12,14 @@ class RequestsController < ApplicationController
       @courses = CourseInstructor.where(:instructor_id=>current_user.id)
       @requests =[]
       @courses.each do |c|
-        @request = Request.find_by(:course_id=>c.course_id)
+        @request = Request.where(:course_id=>c.course_id)
         if @request.nil?
           puts 'REQUEST#INDEX :: request nil'
         else
           puts 'REQUEST#INDEX :: request not nil'
-          @requests << @request
+          @request.each do |r|
+            @requests << r
+          end
         end
         end
     else
