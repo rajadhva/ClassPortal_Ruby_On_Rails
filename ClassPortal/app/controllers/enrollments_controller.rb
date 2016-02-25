@@ -22,6 +22,21 @@ class EnrollmentsController < ApplicationController
   # GET /enrollments/new
   def new
     @enrollment = Enrollment.new
+    @enrollment.course_id = params[:course_id]
+
+    @students = User.where(:student => 1)
+
+    @unenrolled = []
+
+    @students.each do |s|
+      result = Enrollment.search_by_student_course(s.id,params[:course_id])
+      
+      if result.empty?
+        @unenrolled << s
+      end
+    end
+    
+
   end
 
   # GET /enrollments/1/edit
@@ -31,17 +46,14 @@ class EnrollmentsController < ApplicationController
   # POST /enrollments
   # POST /enrollments.json
   def create
-    @enrollment = Enrollment.new(enrollment_params)
-
-    respond_to do |format|
-      if @enrollment.save
-        format.html { redirect_to @enrollment, notice: 'Enrollment was successfully created.' }
-        format.json { render :show, status: :created, location: @enrollment }
-      else
-        format.html { render :new }
-        format.json { render json: @enrollment.errors, status: :unprocessable_entity }
-      end
+    @enrollment = Enrollment.new
+    @enrollment.student_id = params[:enrollment][:student]
+    @enrollment.course_id = params[:enrollment][:course_id]
+    
+    if !@enrollment.student_id.nil? and !@enrollment.course_id.nil?
+      @enrollment.save
     end
+    redirect_to :back
   end
 
   # PATCH/PUT /enrollments/1
@@ -73,6 +85,6 @@ class EnrollmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def enrollment_params
-      params.fetch(:enrollment, {})
+      params.require(:enrollment).permit(:student, :course_id, :enrollment)
     end
 end
