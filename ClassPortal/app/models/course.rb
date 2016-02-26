@@ -10,6 +10,6 @@ class Course < ActiveRecord::Base
   accepts_nested_attributes_for :course_instructors, allow_destroy: true
 
   def self.search(query)
-    where("Title like ? or CourseNumber like ? ", "%#{query}%", "%#{query}%")
+    where("Title like ? or CourseNumber like ?", "%#{query}%", "%#{query}%")
   end
   end
