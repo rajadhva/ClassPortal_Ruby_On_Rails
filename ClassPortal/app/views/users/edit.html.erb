@@ -12,6 +12,12 @@
         <%= f.text_field :email ,:readonly => true, class: 'disabled_textbox' %>
 
         <%= f.submit "Save Changes", class: "btn btn-primary" %>
+        <% if !current_user.super %>
+        <%= link_to "Change your password", user_password_path %>
+        <% else %>
+        *** Super User cannot change password for security reasons
+        <% end %>
     <% end %>
   </div>
 </div>
+

@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   get 'users/new' => 'users#new'
   get 'users/show' => 'users#show'
   get 'users/edit' => 'users#edit'
+  get 'users/password' => 'users#password'
+  patch 'users/update_password' => 'users#update_password'
   patch 'users/update' => 'users#update'
   delete 'users'  => 'users#destroy'
   

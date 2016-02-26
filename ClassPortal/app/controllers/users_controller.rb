@@ -81,6 +81,24 @@ class UsersController < ApplicationController
       @users = User.all.order('created_at DESC')
     end
   end
+
+  def password
+    @user=User.find(current_user.id)
+    puts "==================================================="
+    puts @user.inspect
+    puts "==================================================="
+  end
+
+  def update_password
+    @user = User.find(current_user.id)
+    if @user.update(user_params)
+      # Sign in the user by passing validation in case their password changed
+      sign_in @user, :bypass => true
+      redirect_to root_path
+    else
+      render "password"
+    end
+  end
 	
 private
     # Use callbacks to share common setup or constraints between actions.
