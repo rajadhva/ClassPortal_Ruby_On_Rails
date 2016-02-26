@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'history/show'
+
   resources :subscribes
   resources :conversations do
   resources :messages

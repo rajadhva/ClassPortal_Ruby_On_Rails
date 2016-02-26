@@ -1,0 +1,28 @@
+<h1><%= @user.name %>'s Course History</h1>
+    <table>
+      <thead>
+          <th>Course Number</th>
+          <th>Course Title</th>
+          <th>Course Start Date</th>
+          <th>Course End Date</th>
+          <% if @user.student %>
+            <th>Grade</th>
+          <% end %>
+          <th>Course Status</th>
+      </thead>
+      <tbody>
+      <% @enrollments.each  do  |enrollment| %>
+      <tr>
+        <td><%= Course.find(enrollment.course_id).CourseNumber %></td>
+        <td><%= Course.find(enrollment.course_id).Title %></td>
+        <td><%= Course.find(enrollment.course_id).Startdate %></td>
+        <td><%= Course.find(enrollment.course_id).Enddate %></td>
+        <% if @user.student %>
+          <td><%= enrollment.grade %></td>
+        <% end %>
+        <td><%= Course.find(enrollment.course_id).Status %></td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+

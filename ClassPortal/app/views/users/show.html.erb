@@ -25,5 +25,10 @@
 
  
 </p>
+<% if @user.student %>
+    <%= link_to 'View Student History', history_show_path(:id => @user.id) %> |
+<% elsif @user.instructor%>
+    <%= link_to 'View Instructor History', history_show_path(:id => @user.id) %> |
+<% end %>
 
 <%= link_to 'Back', :back %>
