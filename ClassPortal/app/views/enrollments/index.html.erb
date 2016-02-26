@@ -8,12 +8,14 @@
   <h5>
       <th>User Name</th>
       <th>Email</th>
+      <th>Grade</th>
       <th></th>
   </h5>
   </tr>
 
 <ul class="users">
   <% @students.each do |s| %>  
+  <% e = Enrollment.find_by(:student_id=> s.id, :course_id => @courses.id) %>
   <tr>
       
     <td>
@@ -22,10 +24,11 @@
     <td>
       <%= s.email %>
     </td>
-    
+    <td> <%= e.grade %></td>
     <td>
-    <% e = Enrollment.find_by(:student_id=> s.id, :course_id => @courses.id) %>
-    <%= link_to "Delete", enrollments_path(:id=>e), method: :delete, data: { confirm: "Confirm?"} %>
+    
+    <%= link_to "Delete", enrollments_path(:id=>e), method: :delete, data: { confirm: "Confirm?"} %> | 
+    <%= link_to 'Post Grades', edit_enrollment_path(e) %>
     </td>
 
   </tr>

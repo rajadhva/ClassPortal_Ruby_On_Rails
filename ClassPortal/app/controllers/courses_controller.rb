@@ -72,6 +72,18 @@ class CoursesController < ApplicationController
       end
     end
 
+    @course_instructors = CourseInstructor.find_by(:course_id => @course.id)
+ 
+    if @course_instructors.nil?
+        course_instructor = CourseInstructor.new
+        course_instructor.course_id = @course.id
+        course_instructor.instructor_id = params[:course_instructors][:Instructor]
+        course_instructor.save
+    else 
+        @course_instructors.update_attribute(:instructor_id,params[:course_instructors][:Instructor])
+    end
+
+
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }

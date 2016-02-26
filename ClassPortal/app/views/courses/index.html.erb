@@ -16,7 +16,7 @@
     <th>Delete Course</th>
     <% end %>
     <% if !current_user.student %>
-    <th>Post Grades</th>
+    <th>Manage</th>
     <% end %>
   </tr>
   <tbody>
@@ -32,17 +32,14 @@
         <td><%= course.Status %></td>
         <% if current_user.admin? %>
             <td>
-              <% if course.Status=="Active" %>
+              
                   <%= link_to "Delete", course,  method: :delete, data: { confirm: "Confirm?" } %>
-              <% end %>
+              
             </td>
         <% end %>
         <% if !current_user.student? %>
             <td>
-              <% if course.Status=="Active" %>
-                  <%= link_to "Manage Students", enrollments_index_path(:course_id=>course.id) %> |
-                  <%= link_to 'View Grades', :controller => 'enrollments', :action => 'show', :id =>course.id %>
-              <% end %>
+            <%= link_to "Manage Students", enrollments_index_path(:course_id=>course.id) %> 
             </td>
         <% end %>
       </tr>
