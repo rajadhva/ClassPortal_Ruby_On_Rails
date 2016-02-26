@@ -2,10 +2,10 @@
 
 <%= form_for(@enrollment) do |f| %>
     <%= f.label :course_id %>
-    <%= f.text_field :course_id, class: 'form-control' %>
+    <%= f.label :course_id, class: 'form-control', value: Course.find(@enrollment.course_id).Title %>
 
     <%= f.label :student_id %>
-    <%= f.text_field :student_id, class: 'form-control' %>
+    <%= f.label :student_id, class: 'form-control', value: User.find(@enrollment.student_id).name %>
 
     <%= f.label :grade %>
     <%= f.text_field :grade, class: 'form-control' %>
