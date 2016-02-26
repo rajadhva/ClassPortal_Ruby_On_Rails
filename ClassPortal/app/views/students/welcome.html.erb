@@ -34,10 +34,11 @@
 		<table>
 		<tr><th>Course Number</th><th>Course Title</th><th></th></tr>
 	      <% @currentCourses.each  do  |currentCourse| %>
+        <% enrollment = Enrollment.find_by(:course_id=>currentCourse.id, :student_id=>current_user.id)%>
 	      	<tr>
 	      		<td><%=link_to currentCourse.CourseNumber,currentCourse%></td>
 	      		<td><%=currentCourse.Title %></td>
-	      		<td><%=link_to "Drop Course", enrollments_path(:id=>currentCourse.id), method: :delete, data: { confirm: "Confirm?"}%></td>
+	      		<td><%=link_to "Drop Course", enrollments_path(:id=>enrollment.id), method: :delete, data: { confirm: "Confirm?"}%></td>
 	      	</tr>
 	      <%end%>
 	   </table>
@@ -56,11 +57,12 @@
       <table>
       	<tr><th>Course Number</th><th>Course Title</th><th>Start Date</th><th></th></tr>
 	      <% @futureCourses.each  do  |futureCourse| %>
+        <% enrollment = Enrollment.find_by(:course_id=>futureCourse.id, :student_id=>current_user.id)%>
 	      	<tr>
 	      		<td><%=link_to futureCourse.CourseNumber,futureCourse%></td>
 	      		<td><%=futureCourse.Title %></td>
 	      		<td><%=futureCourse.Startdate %></td>
-            <td><%=link_to "Drop Course", enrollments_path(:id=>futureCourse.id), method: :delete, data: { confirm: "Confirm?"}%></td>
+            <td><%=link_to "Drop Course", enrollments_path(:id=>enrollment.id), method: :delete, data: { confirm: "Confirm?"}%></td>
 	      	</tr>
 	      <%end%>
 	   </table>

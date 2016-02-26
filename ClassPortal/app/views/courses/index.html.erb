@@ -39,7 +39,7 @@
         <% end %>
         <% if !current_user.student? %>
             <td>
-            <%= link_to "Manage Students", enrollments_index_path(:course_id=>course.id) %> 
+            <%= link_to "Manage Students and Grades", enrollments_index_path(:course_id=>course.id) %> 
             </td>
         <% end %>
       </tr>

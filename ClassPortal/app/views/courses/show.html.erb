@@ -26,16 +26,11 @@
   <strong>Status:</strong>
   <%= @course.Status %><br/>
 </p>
-<%= link_to "Reference Material", course_references_path(@course) %> |
 <% if !current_user.student %>
-    <%= link_to 'Update Course', edit_course_path(@course) %> |
-    <%= link_to 'View Grades', :controller => 'enrollments', :action => 'show', :id =>@course.id %> |
+    <%= link_to 'Update Course', edit_course_path(@course) %>
 <% elsif current_user.student and @enrollment.nil? %>
     <%= link_to 'Request Enrollment', requests_new_path(:student_id=>current_user.id, :course_id=>@course.id) %> |
 <% end %>
 <% if current_user.student and @course.Status=="Inactive" %>
 <%= link_to 'Subcribe Notification', subscribes_path(:course=>@course.Title),method: :post%>|
 <% end %>
-
-
-<%= link_to 'Back', :back %>

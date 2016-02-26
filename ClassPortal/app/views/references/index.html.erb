@@ -7,8 +7,9 @@
 <% end %>
 
 <br/>
-
+<% if !current_user.student? %>
 <%= link_to "Add new Reference", new_course_reference_path(Course.find(params[:course_id])), class: "btn btn-primary" %>
+<% end %>
 <br />
 <br />
 
