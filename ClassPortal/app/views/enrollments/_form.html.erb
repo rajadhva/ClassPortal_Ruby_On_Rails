@@ -12,6 +12,15 @@
   <% end %>
 
   <div class="actions">
+    <div class="field">
+    <%= f.hidden_field :course_id,  :value => @enrollment.course_id %>
+    </div>
+
+    <div class="field">
+    <%= f.collection_select :student, @unenrolled.select{|u| u[:student]} , :id, :name %>
+    </div>
+  
+  
     <%= f.submit %>
   </div>
 <% end %>

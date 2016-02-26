@@ -15,9 +15,6 @@
     <% if current_user.admin?%>
     <th>Delete Course</th>
     <% end %>
-    <% if !current_user.student %>
-    <th>Post Grades</th>
-    <% end %>
   </tr>
   <tbody>
   <% @courses.each do |course| %>
@@ -41,10 +38,11 @@
             <td>
               <% if course.Status=="Active" %>
                   <%= link_to "Manage Students", enrollments_index_path(:course_id=>course.id) %> |
-                  <%= link_to 'View Grades', :controller => 'enrollments', :action => 'show', :id =>course.id %>
+                  <%= link_to "Post Grades", enrollments_grades_path(:course_id=>course.id) %>
               <% end %>
             </td>
         <% end %>
+
       </tr>
   <% end %>
   </tbody>

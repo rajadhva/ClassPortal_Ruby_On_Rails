@@ -14,7 +14,7 @@ default: &default
   host: localhost
   encoding: utf8
   pool: 5
-  username: csc517
+  username: csc547
   password: oodd@1
   socket: /var/run/mysqld/mysqld.sock
 

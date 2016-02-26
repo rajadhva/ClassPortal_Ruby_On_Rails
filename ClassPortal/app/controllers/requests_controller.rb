@@ -10,6 +10,7 @@ class RequestsController < ApplicationController
       @courses = CourseInstructor.where(:instructor_id=>current_user.id)
       @requests =[]
       @courses.each do |c|
+
         @request = Request.find_by(:course_id=>c.course_id)
           if !@request.nil?
             @requests << @request
@@ -88,9 +89,10 @@ class RequestsController < ApplicationController
   def set_request
     @request = Request.find(params[:id])
   end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
       params.require(:request).permit(:student_id, :course_id, :Status)
     end
+
 end
+
