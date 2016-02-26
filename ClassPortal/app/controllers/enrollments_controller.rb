@@ -78,7 +78,10 @@ class EnrollmentsController < ApplicationController
   # DELETE /enrollments/1
   # DELETE /enrollments/1.json
   def destroy
+    @enrollment=Enrollment.find(params[:id])
+    if @enrollment.present?
     @enrollment.destroy
+    end
     redirect_to request.referrer
   end
 
