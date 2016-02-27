@@ -115,17 +115,46 @@ class CoursesController < ApplicationController
     if params[:Title].to_s != ''
       @courses = @courses.where("Title = ?", params[:Title].to_s)
     end
-    if params[:Instructor].to_s != ''
 
-    end
     if params[:Description].to_s != ''
       @courses = @courses.where("Description = ?", params[:Description].to_s)
     end
     if params[:Status].to_s != ''
       @courses = @courses.where("Status = ?", params[:Status].to_s)
+      print 'after status check'
+      puts @courses.size
+      #@courses = @courses.find_(params[:Status].to_s)
     end
 
-    @courses = @courses.order('created_at DESC')
+    if params[:Instructor].to_s != ''
+      instructor = User.find_by_name(params[:Instructor].to_s)
+      print 'Instructor ID = '
+      puts instructor.id
+      course_instructor = CourseInstructor.where("instructor_id = ?", instructor.id)
+      print 'Course_Instructor size = '
+      puts course_instructor.size
+      list_of_courses = []
+      course_instructor.each do |course|
+        c = @courses.where('Title = ?', Course.find(course.course_id).Title.to_s)
+        #course_name = Course.where(course.course_id)
+        #if !course.nil?
+       # print 'Course Name = '
+       # puts course_name.Title
+        #c = @courses.where("Title = ?", course_name.Title.to_s)
+        if !c.nil? & (c.size > 0)
+          #list_of_courses << c
+          c.each do |a|
+          puts a.CourseNumber
+            list_of_courses << a
+            end
+        end
+       # puts course.course_id
+        end
+
+      @courses = list_of_courses
+    end
+
+    #@courses = @courses.order('created_at DESC')
   end
 
   private
