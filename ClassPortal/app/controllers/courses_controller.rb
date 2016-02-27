@@ -110,17 +110,17 @@ class CoursesController < ApplicationController
     @courses=Course.all
 
     if params[:CourseNumber].to_s != ''
-      @courses = @courses.where("CourseNumber = ?", params[:CourseNumber].to_s)
+      @courses = @courses.where("CourseNumber like ?", '%'+params[:CourseNumber].to_s+'%')
     end
     if params[:Title].to_s != ''
-      @courses = @courses.where("Title = ?", params[:Title].to_s)
+      @courses = @courses.where("Title like ?", '%'+params[:Title].to_s+'%')
     end
 
     if params[:Description].to_s != ''
-      @courses = @courses.where("Description = ?", params[:Description].to_s)
+      @courses = @courses.where("Description like ?", '%'+params[:Description].to_s+'%')
     end
     if params[:Status].to_s != ''
-      @courses = @courses.where("Status = ?", params[:Status].to_s)
+      @courses = @courses.where("Status like ?", '%'+params[:Status].to_s+'%')
       print 'after status check'
       puts @courses.size
       #@courses = @courses.find_(params[:Status].to_s)
