@@ -4,6 +4,7 @@ class Course < ActiveRecord::Base
   validates(:Startdate, presence:true)
   validates(:Enddate, presence:true)
   has_many :requests, :dependent => :destroy
+  has_many :inactive_requests, :dependent => :destroy
   has_many :references
   has_many :enrollments, :dependent => :destroy
   has_many :course_instructors, :dependent => :destroy

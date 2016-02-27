@@ -64,7 +64,7 @@ class CoursesController < ApplicationController
   def update
 
     #to send mail for subscriptions
-    if (params[:Status]=="1")
+    if (params[:Status]=="Active")
       @subscribe_list = Subscribe.where(:course => params[:Title])
       @subscribe_list.each do |i|
         SubscribeMailer.sample_email(i.user,i.course).deliver_now

@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Course Inactivate Requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Instructor Name</th>
+      <th>Course Number</th>
+      <th>Course Name</th>
+      <th colspan="2">Request Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inactive_requests.each do |inactive_request| %>
+          <tr>
+          
+            <td><%= Instructor.find(inactive_request.instructor_id).name %></td>
+            <td><%= inactive_request.course.CourseNumber %></td>
+            <td><%= inactive_request.course.Title %></td>
+            
+            <% if current_user.instructor %>
+              <td ><%=inactive_request.Status %>    </td>
+            <% else %>
+                <% if inactive_request.Status == "Pending"%>
+               
+                  <td><%= link_to 'Approve', inactive_request_path(inactive_request, inactive_request: {Status: 'Approved'}), method: :put %> |
+                  <%= link_to 'Deny', inactive_request_path(inactive_request, inactive_request: {Status: 'Denied'}), method: :put %> </td>
+
+                <%else%>
+
+                  <td ><%=inactive_request.Status %>    </td>
+                
+                <% end %>
+              <%end %>
+
+            <td><%= link_to 'Delete', inactive_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+      <% end %>
+  </tbody>
+</table>
+
+<br>

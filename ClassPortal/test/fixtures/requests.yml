@@ -1,9 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: 
+  student_id:
   course_id: 
-
+  Status:
 two:
-  user_id: 
+  student_id:
   course_id: 
+  Status:

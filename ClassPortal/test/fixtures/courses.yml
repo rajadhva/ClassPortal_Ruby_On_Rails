@@ -1,17 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  Title: MyString
-  Description: MyString
-  Instructor: MyString
+  Title: TestCourse1
+  Description: Testing Course 1
+  #Instructor: MyString
   Startdate: 2016-02-15
   Enddate: 2016-02-15
-  Status: MyString
-
+  Status: 0
+  CourseNumber: test123
 two:
-  Title: MyString
-  Description: MyString
-  Instructor: MyString
-  Startdate: 2016-02-15
-  Enddate: 2016-02-15
-  Status: MyString
+  Title: TestCourse2
+  Description: Testing Course 2
+  #Instructor: MyString
+  Startdate: 2016-02-17
+  Enddate: 2016-03-15
+  Status: 0
+  CourseNumber: test234

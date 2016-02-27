@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225034620) do
+ActiveRecord::Schema.define(version: 20160227003521) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id",    limit: 4
@@ -51,6 +51,17 @@ ActiveRecord::Schema.define(version: 20160225034620) do
 
   add_index "enrollments", ["course_id"], name: "index_enrollments_on_course_id", using: :btree
   add_index "enrollments", ["student_id"], name: "index_enrollments_on_student_id", using: :btree
+
+  create_table "inactive_requests", force: :cascade do |t|
+    t.integer  "instructor_id", limit: 4
+    t.integer  "course_id",     limit: 4
+    t.string   "Status",        limit: 255, default: "Pending"
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+  end
+
+  add_index "inactive_requests", ["course_id"], name: "index_inactive_requests_on_course_id", using: :btree
+  add_index "inactive_requests", ["instructor_id"], name: "index_inactive_requests_on_instructor_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
     t.text     "body",            limit: 65535
@@ -121,6 +132,8 @@ ActiveRecord::Schema.define(version: 20160225034620) do
   add_foreign_key "course_instructors", "users", column: "instructor_id"
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users", column: "student_id"
+  add_foreign_key "inactive_requests", "courses"
+  add_foreign_key "inactive_requests", "users", column: "instructor_id"
   add_foreign_key "requests", "courses"
   add_foreign_key "requests", "users", column: "student_id"
 end
