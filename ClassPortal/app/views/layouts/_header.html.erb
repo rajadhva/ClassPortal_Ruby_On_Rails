@@ -41,7 +41,9 @@
               <li><%= link_to "Search Courses", courses_search_path, :controller => "courses" %></li>
               
               <li><%= link_to "Enrollment Requests", requests_index_path, :controller => "requests" %></li>
-              
+              <% if !current_user.student %>
+              <li><%= link_to "Course Inactivate Requests", inactive_requests_index_path, :controller => "inactive_requests" %></li>
+              <% end %>
             </ul>
       </li>
           <li class="dropdown">

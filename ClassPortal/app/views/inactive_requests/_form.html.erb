@@ -1,0 +1,36 @@
+
+<% if @count.count > 0%>
+
+<%="You have already submitted a request to change he status of this course!" %><br/>
+<%else %>
+
+
+<%= form_for(@inactive_request) do |f| %>
+  <% if @inactive_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+      <ul>
+      <% @inactive_request.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+Are you sure you want to request the status of this course to be changed to 'Inactive'?
+
+  <div class="field">
+    <%= f.hidden_field :course_id,  :value => @inactive_request.course_id %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :instructor_id , :value =>  current_user.id%>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "Yes" %>
+  </div>
+<% end %>
+
+<%end %>

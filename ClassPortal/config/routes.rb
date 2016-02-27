@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  
   get 'history/show'
 
   resources :subscribes
@@ -11,6 +12,11 @@ Rails.application.routes.draw do
   post 'requests/create' => 'requests#create'
   get 'requests/index' => 'requests#index'
   put 'requests/update' => 'requests#update'
+
+  get 'inactive_requests/new' => 'inactive_requests#new'
+  post 'inactive_requests/create' => 'inactive_requests#create'
+  get 'inactive_requests/index' => 'inactive_requests#index'
+  put 'inactive_requests/update' => 'inactive_requests#update'
 
   get 'courses/search' => 'courses#search'
   get 'courses/index' => 'courses#index'
@@ -57,6 +63,7 @@ Rails.application.routes.draw do
     resources :references
   end
   resources :requests
+  resources :inactive_requests
 
   devise_for :users, :controllers => {registrations: 'registrations'}
 
