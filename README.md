@@ -8,12 +8,14 @@ https://powerful-beyond-65979.herokuapp.com/
 Below are the details for the login:
  
 Super-Admin
-Username - super@ncsu.edu
-Password - Superuser
-****Note: Password for Super Admin cannot be changed as all reviewers will be logging in to the system using Super Admin
-****Super Admin cannot be deleted.
 
-<b>Features</b>
+Username - super@ncsu.edu <br/>
+Password - Superuser 
+
+Note: Password for Super Admin cannot be changed as all reviewers will be logging in to the system using Super Admin<br/>
+Super Admin cannot be deleted.
+
+<b>Features</b> <br/>
 --Admin
  - Admins can edit their profile.
  - Admins can view, create, edit, delete other Admins, Instructors and Students.
